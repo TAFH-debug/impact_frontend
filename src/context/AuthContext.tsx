@@ -71,7 +71,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
                 surname: surname,
             });
             setUser({
-                id: res.data._id,
+                id: res.data.user._id,
                 email: email,
                 name: name,
                 surname: surname,
@@ -80,7 +80,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
                 refreshToken: res.data.refreshToken,
             })
             window.localStorage.setItem("token", res.data.accessToken);
-            window.localStorage.setITem("impact-userId", res.data._id);
+            window.localStorage.setItem("impact-userId", res.data.user._id);
             router.push("/")
             // console.log(res);
         } catch (err) {
@@ -105,7 +105,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
                 refreshToken: res.data.refreshToken,
             })
             window.localStorage.setItem("token", res.data.accessToken);
-            window.localStorage.setITem("impact-userId", res.data._id);
+            window.localStorage.setItem("impact-userId", res.data.user._id);
             router.push("/profile")
         } catch (err) {
             console.log("error loggin in", err);
