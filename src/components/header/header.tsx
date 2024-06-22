@@ -15,16 +15,16 @@ const Header = (props: Props) => {
     return (
         <header className="bg-white text-black py-4 px-6 flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2" prefetch={false}>
-                <img src="https://static.tildacdn.pro/tild3835-3562-4436-b934-663163663637/9.svg" alt="" className='w-40'/>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP3H0F3rEt_ycWnYwU7TXgGCsHvW6JdNyT5w&s" alt="" className='w-20'/>
             </Link>
             <nav className="flex items-center gap-4">
-                <Link href="#" className="hover:underline" prefetch={false}>
+                <Link href="#" className="hover:text-rose-500" prefetch={false}>
                     Courses
                 </Link>
-                <Link href="/mentors" className="hover:underline" prefetch={false}>
+                <Link href="/mentors" className="hover:text-rose-500" prefetch={false}>
                     Book a Mentor
                 </Link>
-                <Link href="/gpt" className="hover:underline" prefetch={false}>
+                <Link href="/gpt" className="hover:text-rose-500" prefetch={false}>
                     AI Consultant
                 </Link>
                 {user.id ? (

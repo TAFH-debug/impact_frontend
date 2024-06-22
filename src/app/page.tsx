@@ -16,8 +16,8 @@ export default function Component() {
         <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-white text-black">
           <div className="container px-4 md:px-6">
             <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
-              <div className="flex flex-col justify-center space-y-4">
-                <div className="space-y-2">
+              <div className="flex flex-col justify-center space-y-10">
+                <div className="space-y-6">
                   <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
                     Unlock Your Potential with Impact Admission
                   </h1>
@@ -26,17 +26,17 @@ export default function Component() {
                     you to success.
                   </p>
                 </div>
-                <div className="flex flex-col gap-2 min-[400px]:flex-row">
+                <div className="flex flex-col gap-3 min-[400px]:flex-row">
                   <Link
                     href="#"
-                    className="inline-flex h-10 items-center justify-center rounded-md bg-secondary px-8 text-sm font-medium text-secondary-foreground shadow transition-colors hover:bg-secondary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+                    className="inline-flex h-10 items-center justify-center rounded-md bg-rose-500 px-8 text-sm font-medium text-white shadow transition-colors hover:bg-red-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
                     prefetch={false}
                   >
                     Browse Courses
                   </Link>
                   <Link
                     href="#"
-                    className="inline-flex h-10 items-center justify-center rounded-md bg-secondary px-8 text-sm font-medium text-secondary-foreground shadow transition-colors hover:bg-secondary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+                    className="inline-flex h-10 items-center justify-center rounded-md bg-rose-500 px-8 text-sm font-medium text-white shadow transition-colors hover:bg-red-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
                     prefetch={false}
                   >
                     Meet Our Mentors
@@ -44,7 +44,7 @@ export default function Component() {
                 </div>
               </div>
               <img
-                src="/placeholder.svg"
+                src="https://files.oaiusercontent.com/file-t8YqBbGUfIi0mpG5apfOtKxg?se=2024-06-22T13%3A37%3A43Z&sp=r&sv=2023-11-03&sr=b&rscc=max-age%3D31536000%2C%20immutable&rscd=attachment%3B%20filename%3Ddb6d2f3d-53be-4c6c-8c04-977af06c8f34.webp&sig=8UhxW2WXg9%2B/CR%2BtCX/XfTqLCENtnDw58lK42/gRe2g%3D"
                 width="550"
                 height="550"
                 alt="Hero"
@@ -53,34 +53,34 @@ export default function Component() {
             </div>
           </div>
         </section>
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
+        <section className="w-full py-12 md:py-24 lg:py-32 bg-black">
           <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+            <div className="flex flex-col items-center justify-center space-y-6 text-center">
               <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm text-muted-foreground">
+                <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm text-black">
                   AI-Powered Learning
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Personalized Learning with AI</h2>
-                <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-white">Personalized Learning with<span className="text-rose-500"> AI</span></h2>
+                <p className="max-w-[900px] text-white md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                   Our AI assistant is here to help you every step of the way. From course recommendations to
                   personalized study plans, our AI-powered tools will ensure you reach your educational goals.
                 </p>
               </div>
             </div>
-            <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-2 lg:gap-12">
+            <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-2 lg:gap-12 text-white">
               <img
-                src="/placeholder.svg"
+                src="https://miro.medium.com/v2/resize:fit:765/1*dMFfjuOs_Ufr5IKkj5pdww.jpeg"
                 width="550"
                 height="310"
                 alt="AI Assistant"
                 className="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full lg:order-last"
               />
-              <div className="flex flex-col justify-center space-y-4">
+              <div className="flex flex-col justify-center space-y-6 text-white">
                 <ul className="grid gap-6">
                   <li>
                     <div className="grid gap-1">
-                      <h3 className="text-xl font-bold">Course Recommendations</h3>
-                      <p className="text-muted-foreground">
+                      <h3 className="text-xl font-bold text-white">Course Recommendations</h3>
+                      <p className="text-white">
                         Our AI assistant analyzes your interests and learning style to recommend the perfect courses for
                         you.
                       </p>
@@ -89,7 +89,7 @@ export default function Component() {
                   <li>
                     <div className="grid gap-1">
                       <h3 className="text-xl font-bold">Personalized Study Plans</h3>
-                      <p className="text-muted-foreground">
+                      <p className="text-white">
                         Get a custom-tailored study plan to help you stay on track and achieve your learning goals.
                       </p>
                     </div>
@@ -97,7 +97,7 @@ export default function Component() {
                   <li>
                     <div className="grid gap-1">
                       <h3 className="text-xl font-bold">Real-Time Feedback</h3>
-                      <p className="text-muted-foreground">
+                      <p className="text-white">
                         Our AI assistant provides real-time feedback and guidance to help you improve and excel.
                       </p>
                     </div>
@@ -119,7 +119,7 @@ export default function Component() {
             <div className="flex flex-col gap-2 min-[400px]:flex-row justify-center">
               <Link
                 href="#"
-                className="inline-flex h-10 items-center justify-center rounded-md bg-black px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-black/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+                className="inline-flex h-10 items-center justify-center rounded-md bg-rose-500 px-8 text-sm font-medium text-white shadow transition-colors hover:bg-red-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
                 prefetch={false}
               >
                 Meet Our Mentors
@@ -150,8 +150,15 @@ export default function Component() {
                 </Link>
               </div>
               <div className="flex flex-col items-start space-y-4">
-                <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm text-muted-foreground" />
+              <img
+                src="https://files.oaiusercontent.com/file-XNN7zMbfuRps9V4dLng3RfLp?se=2024-06-22T13%3A36%3A26Z&sp=r&sv=2023-11-03&sr=b&rscc=max-age%3D31536000%2C%20immutable&rscd=attachment%3B%20filename%3Dd1b18fe7-e27c-4f64-98d6-6bdb44fbb623.webp&sig=OCK6igdSQ7DpiQ1JxeY2RUgScdlu6Sdo0X/zy%2BDcUW8%3D"
+                width="550"
+                height="400"
+                alt="AI Assistant"
+                className="mx-auto aspect-video overflow-hidden rounded-xl object-center sm:w-full lg:order-last"
+              />
               </div>
+
             </div>
           </div>
         </section>
