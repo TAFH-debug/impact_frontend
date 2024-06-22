@@ -32,13 +32,15 @@ export default function Component() {
               <p className="text-base text-[#8a8a8a] mb-6">
                 {user.description}
               </p>
-              <Link
-                href={user.calendly_link}
-                className="inline-flex items-center justify-center px-5 py-3 bg-rose-500 rounded-md text-white font-medium hover:bg-red-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6a6a6a]"
-                prefetch={false}
-              >
-                Book a Mentor Session
-              </Link>
+              {user.calendly_link ? (
+                <Link
+                  href={user.calendly_link}
+                  className="inline-flex items-center justify-center px-5 py-3 bg-rose-500 rounded-md text-white font-medium hover:bg-red-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6a6a6a]"
+                  prefetch={false}
+                >
+                  Book a Mentor Session
+                </Link>
+              ) : <></>}
             </div>
           </div>
         ))}

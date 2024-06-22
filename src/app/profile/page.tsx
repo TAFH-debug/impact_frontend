@@ -28,46 +28,48 @@ export default function Component() {
                 </div>
               </div>
             </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid gap-2">
-                <Label htmlFor="name" className="text-black">
-                  Name
-                </Label>
-                <Input id="name" defaultValue={user.name} className="bg-gray-100 text-black" />
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="surname" className="text-black">
-                  Surname
-                </Label>
-                <Input id="surname" defaultValue={user.surname} className="bg-gray-100 text-black" />
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="description" className="text-black">
-                  Description
-                </Label>
-                <Input id="description" defaultValue={user.description} className="bg-gray-100 text-black" />
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="calendly" className="text-black">
-                  Calendly Link
-                </Label>
-                <Input id="calendly" defaultValue={user.calendly_link} className="bg-gray-100 text-black" />
-              </div>
-
-              <div className="grid gap-2">
-                <Label htmlFor="photo" className="text-white/80">
-                  Photo
-                </Label>
-                <div className="flex items-center gap-4">
-                  <Avatar className="h-16 w-16 border-[1px] border-gray-300">
-                    <AvatarImage src="/placeholder-user.jpg" />
-                    <AvatarFallback>JP</AvatarFallback>
-                  </Avatar>
-                  <Button variant="outline" className="bg-gray-100 text-black hover:bg-gray-300 ">
-                    Change Photo
-                  </Button>
+            <CardContent >
+              <form className="space-y-4" onSubmit={(e) => { handleSubmit(e) }}>
+                <div className="grid gap-2">
+                  <Label htmlFor="name" className="text-black">
+                    Name
+                  </Label>
+                  <Input id="name" defaultValue={user.name} className="bg-gray-100 text-black" />
                 </div>
-              </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="surname" className="text-black">
+                    Surname
+                  </Label>
+                  <Input id="surname" defaultValue={user.surname} className="bg-gray-100 text-black" />
+                </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="description" className="text-black">
+                    Description
+                  </Label>
+                  <Input id="description" defaultValue={user.description} className="bg-gray-100 text-black" />
+                </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="calendly" className="text-black">
+                    Calendly Link
+                  </Label>
+                  <Input id="calendly" defaultValue={user.calendly_link} className="bg-gray-100 text-black" />
+                </div>
+
+                <div className="grid gap-2">
+                  <Label htmlFor="photo" className="text-white/80">
+                    Photo
+                  </Label>
+                  <div className="flex items-center gap-4">
+                    <Avatar className="h-16 w-16 border-[1px] border-gray-300">
+                      <AvatarImage src="/placeholder-user.jpg" />
+                      <AvatarFallback>JP</AvatarFallback>
+                    </Avatar>
+                    <Button variant="outline" className="bg-gray-100 text-black hover:bg-gray-300 ">
+                      Change Photo
+                    </Button>
+                  </div>
+                </div>
+              </form>
             </CardContent>
             <CardFooter>
               <Button className="bg-rose-500 text-white hover:bg-red-300 hover:text-white">Save Changes</Button>
