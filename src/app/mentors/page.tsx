@@ -8,8 +8,9 @@ export default function Component() {
   const [users, setUsers] = useState<any[]>([]);
 
   useEffect(() => {
-    axiosInstance.get("/user/all").then((res) => {
-      const mentorUsers = res.data.filter((user: any) => user.role === "mentor");
+    axiosInstance.get("/user/mentors").then((res) => {
+      console.log(res.data);
+      const mentorUsers = res.data;
       setUsers(mentorUsers);
     });
   }, []);
