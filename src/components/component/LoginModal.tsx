@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react";
-import axiosInstance from "@/axiosInstance";
+import adminInstance from "@/adminInstance";
 
 export default function LoginModal({ onClose }: any) {
   const [username, setUsername] = useState('');
@@ -10,18 +10,18 @@ export default function LoginModal({ onClose }: any) {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const credentials = btoa(`${username}:${password}`);
-    localStorage.setItem('token', credentials);
-    
-    const response = await axiosInstance.get('/admin/check');
+    localStorage.setItem('admin_token', credentials);
+
+    const response = await adminInstance.get('/admin/check');
     const json = response.data;
-  
+
     if (response.status > 299 || response.status < 200) {
       console.error('Error:', json.message);
       return;
     }
     onClose();
   };
-  
+
 
   return (
     <div className="fixed inset-0 flex bg-black items-center justify-center z-50">

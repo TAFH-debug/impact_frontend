@@ -6,8 +6,8 @@ import Link from "next/link";
 
 export default function Component() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [courses, setCourses] = useState([]);
-  const [filteredCourses, setFilteredCourses] = useState([]);
+  const [courses, setCourses] = useState<any[]>([]);
+  const [filteredCourses, setFilteredCourses] = useState<any[]>([]);
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -46,10 +46,10 @@ export default function Component() {
         </div>
         <div className="mx-auto w-full max-w-sm space-y-2 flex items-center gap-2 mb-5">
           <form className="flex gap-2 flex-1" onSubmit={(e) => e.preventDefault()}>
-            <Input 
-              type="text" 
-              placeholder="Search for a course" 
-              className="max-w-lg flex-1" 
+            <Input
+              type="text"
+              placeholder="Search for a course"
+              className="max-w-lg flex-1"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
