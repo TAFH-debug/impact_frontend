@@ -1,11 +1,16 @@
 "use client"
-import { JSX, SVGProps, useState } from "react"
+import {JSX, SVGProps, useEffect, useState} from "react"
 import LoginModal from "@/components/component/LoginModal"
 import MainContent from "@/components/component/AdminContent"
 
 export default function Component() {
-  const [isModalOpen, setIsModalOpen] = useState(localStorage.getItem('token') !== null);
+  const [isModalOpen, setIsModalOpen] = useState(true);
 
+  useEffect(() => {
+    if (window !== undefined) {
+      setIsModalOpen(localStorage.getItem('token') === null);
+    }
+  }, []);
   const openModal = () => {
     setIsModalOpen(true);
   };
