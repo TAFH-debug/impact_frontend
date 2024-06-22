@@ -13,7 +13,7 @@ export default function AuthenticateUser({
     useEffect(() => {
         if (window === undefined) return;
         const userId = window.localStorage.getItem("impact-userId");
-        if (userId !== null) {
+        if (userId !== null && userId) {
             authenticateUser(userId);
         }
     }, [])

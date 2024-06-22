@@ -131,7 +131,10 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     }
 
     const LogoutUser = () => {
+        window.localStorage.setItem("token", "");
+        window.localStorage.setItem("impact-userId", "");
         setUser(initialUser);
+        router.push("/");
     };
 
     const valueToShare = {
