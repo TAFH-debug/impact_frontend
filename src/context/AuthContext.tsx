@@ -7,6 +7,7 @@ import React, {
     useEffect,
     useRef,
 } from "react";
+import { useRouter } from "next/navigation";
 
 import axios from "axios";
 
@@ -52,6 +53,7 @@ export const UserContext = createContext<UserContextType | undefined>(
 );
 
 const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+    const router = useRouter();
     const [user, setUser] = useState<User>(initialUser);
 
     const registerUser = async (
@@ -77,7 +79,8 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
                 accessToken: res.data.accessToken,
                 refreshToken: res.data.refreshToken,
             })
-            console.log(res);
+            router.push("/")
+            // console.log(res);
         } catch (err) {
             console.log("error registering", err);
         }
@@ -91,15 +94,16 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
                 password: password,
             });
             setUser({
-                id: res.data._id,
+                id: res.data.user._id,
                 email: email,
-                name: res.data.name,
-                surname: res.data.surname,
+                name: res.data.user.name,
+                surname: res.data.user.surname,
                 role: "user",
                 accessToken: res.data.accessToken,
                 refreshToken: res.data.refreshToken,
             })
-            console.log(res);
+            router.push("/profile")
+            // console.log(res);
         } catch (err) {
             console.log("error loggin in", err);
         }

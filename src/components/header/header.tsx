@@ -1,11 +1,17 @@
+'use client'
+
 import Link from 'next/link'
 import React, { SVGProps } from 'react'
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { Button } from '../ui/button'
 import Image from 'next/image'
+
+import { useUser } from '@/context/AuthContext'
 
 type Props = {}
 
 const Header = (props: Props) => {
+    const { user } = useUser();
     return (
         <header className="bg-white text-black py-4 px-6 flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2" prefetch={false}>
@@ -22,8 +28,22 @@ const Header = (props: Props) => {
                 <Link href="/gpt" className="hover:underline" prefetch={false}>
                     AI Consultant
                 </Link>
-                <Link href="/register"><Button variant="secondary">Sign Up</Button></Link>
-                <Link href="/login"><Button variant="default">Log In</Button></Link>
+                {user.id ? (
+                    <>
+                        <Link href="#" className="flex items-center gap-2" prefetch={false}>
+                            <Avatar className="h-8 w-8">
+                                <AvatarImage src="/placeholder-user.jpg" />
+                                <AvatarFallback>JD</AvatarFallback>
+                            </Avatar>
+                            <span className="hidden md:inline">{user.name} {user.surname}</span>
+                        </Link>
+                    </>
+                ) : (
+                    <>
+                        <Link href="/register"><Button variant="secondary">Sign Up</Button></Link>
+                        <Link href="/login"><Button variant="default">Log In</Button></Link>
+                    </>
+                )}
             </nav>
         </header>
     )
