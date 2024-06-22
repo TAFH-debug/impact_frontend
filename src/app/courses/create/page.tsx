@@ -1,22 +1,57 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/aGRD5LzkOeV
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
-import { Button } from "@/components/ui/button"
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
+"use client"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import Link from "next/link";
 
 export default function Component() {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [video, setVideo] = useState("");
+  const [text, setText] = useState("");
+
+  const saveData = async () => {
+    const data = {
+      name: title,
+      photo: "black.jpg",
+      isPrivate: false,
+      text,
+      descr: description,
+      video,
+    };
+
+    try {
+      const response = await fetch("http://157.230.239.9:3000/courses/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      console.log("Course created successfully");
+
+    } catch (error) {
+      console.error("There was a problem with the fetch operation:", error);
+    }
+  };
+
   return (
     <div className="flex flex-col h-screen">
       <header className="bg-primary text-primary-foreground py-4 px-6 flex items-center justify-between">
         <h1 className="text-2xl font-bold">Create a Course</h1>
-        <Button variant="ghost" size="icon">
-          <XIcon className="w-6 h-6" />
-          <span className="sr-only">Exit</span>
-        </Button>
+        <Link href="/">
+          <Button variant="ghost" size="icon">
+              <XIcon className="w-6 h-6" />
+            <span className="sr-only">Exit</span>
+          </Button>
+        </Link>
       </header>
       <div className="flex-1 grid grid-cols-1 gap-6 p-6">
         <div className="bg-muted rounded-lg p-6 space-y-6">
@@ -25,11 +60,22 @@ export default function Component() {
             <div className="grid gap-4">
               <div className="grid gap-1.5">
                 <Label htmlFor="title">Title</Label>
-                <Input id="title" placeholder="Enter course title" />
+                <Input
+                  id="title"
+                  placeholder="Enter course title"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                />
               </div>
               <div className="grid gap-1.5">
                 <Label htmlFor="description">Description</Label>
-                <Textarea id="description" placeholder="Enter course description" rows={3} />
+                <Textarea
+                  id="description"
+                  placeholder="Enter course description"
+                  rows={3}
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                />
               </div>
             </div>
           </div>
@@ -38,24 +84,35 @@ export default function Component() {
             <div className="grid gap-4">
               <div className="grid gap-1.5">
                 <Label htmlFor="video">Video Link</Label>
-                <Textarea id="video" placeholder="Enter YouTube video link" rows={3} />
+                <Textarea
+                  id="video"
+                  placeholder="Enter YouTube video link"
+                  rows={3}
+                  value={video}
+                  onChange={(e) => setVideo(e.target.value)}
+                />
               </div>
             </div>
           </div>
           <div className="grid gap-4">
             <div className="grid gap-1.5">
               <Label htmlFor="text">Text</Label>
-              <Textarea id="text" placeholder="Enter course text" rows={3} />
+              <Textarea
+                id="text"
+                placeholder="Enter course text"
+                rows={3}
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+              />
             </div>
             <div className="flex justify-end">
-              <Button>Save Course</Button>
+              <Button onClick={saveData}>Save Course</Button>
             </div>
           </div>
         </div>
       </div>
-      )
     </div>
-  )
+  );
 }
 
 function XIcon(props) {
@@ -75,5 +132,5 @@ function XIcon(props) {
       <path d="M18 6 6 18" />
       <path d="m6 6 12 12" />
     </svg>
-  )
+  );
 }
