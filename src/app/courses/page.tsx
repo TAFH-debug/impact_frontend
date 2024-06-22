@@ -64,9 +64,11 @@ export default function Component() {
             />
             <Button type="submit">Search</Button>
           </form>
-          <Button variant="outline" className="bg-green-500 text-white hover:bg-green-600 !mt-0">
-            Add New Course
-          </Button>
+          <Link href="/courses/create" className="!mt-0">
+            <Button variant="outline" className="bg-green-500 text-white hover:bg-green-600">
+              Add New Course
+            </Button>
+          </Link>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {filteredCourses.map((course, index) => (
