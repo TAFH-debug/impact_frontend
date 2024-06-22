@@ -7,7 +7,7 @@ type Props = {}
 
 const Header = (props: Props) => {
     return (
-        <header className="bg-black text-primary-foreground py-4 px-6 flex items-center justify-between">
+        <header className="bg-white text-black py-4 px-6 flex items-center justify-between">
             <Link href="#" className="flex items-center gap-2" prefetch={false}>
                 <BookOpenIcon className="h-6 w-6" />
                 <span className="text-xl font-bold">Impact Admission</span>
@@ -17,13 +17,10 @@ const Header = (props: Props) => {
                     Courses
                 </Link>
                 <Link href="#" className="hover:underline" prefetch={false}>
-                    Mentorship
+                    Book a Mentor
                 </Link>
                 <Link href="#" className="hover:underline" prefetch={false}>
-                    Community
-                </Link>
-                <Link href="#" className="hover:underline" prefetch={false}>
-                    Resources
+                    AI Consultant
                 </Link>
                 <Button variant="secondary">Sign Up</Button>
                 <Button variant="default">Log In</Button>
