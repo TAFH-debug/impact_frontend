@@ -3,6 +3,7 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { JSX, SVGProps, useState } from "react"
+import axiosInstance from "@/axiosInstance"
 
 interface Message {
   content: string,
@@ -15,7 +16,11 @@ export default function Component() {
 
   const handleSend = async () => {
     setMessages((prevMessages) => [...prevMessages, { content: messageText, role: "user" }]);
-
+    const res = await axiosInstance.post("/gpt", {
+      messages: messages
+    })
+    console.log(res.data);
+    setMessages((prevMessages) => [...prevMessages, res.data.response.message]);
     setMessageText("");
   }
 
@@ -37,7 +42,7 @@ export default function Component() {
             )
           } else {
             return (
-              <div className="flex items-start gap-4 justify-end">
+              <div key={index} className="flex items-start gap-4 justify-end">
                 <div className="border-[1px] px-4 py-3 rounded-lg max-w-[70%] relative">
                   <p>Doing great, thanks for asking!</p>
                 </div>
