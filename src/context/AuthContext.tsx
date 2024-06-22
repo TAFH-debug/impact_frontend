@@ -10,33 +10,28 @@ import React, {
 
 import axios from "axios";
 
-const SERVER_URL = "";
+const BACKEND_URL = "http://157.230.239.9:3000"
 
 const initialUser = {
     id: "",
     email: "",
-    password: "",
     name: "",
     surname: "",
     role: "",
-    calendly_link: "",
-    image: "",
-    description: "",
-    token: "",
+    accessToken: "",
     refreshToken: "",
 };
 
 export interface User {
     id: string;
     email: string;
-    password: string;
     name: string;
     surname: string;
     role: string;
     calendly_link?: string;
-    image: string;
-    description: string;
-    token: string;
+    image?: string;
+    description?: string;
+    accessToken: string;
     refreshToken: string;
 }
 
@@ -67,10 +62,21 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     ) => {
         console.log("Registering User");
         try {
-            //   const res = await axios.post(`${SERVER_URL}` + "/register", {
-            //     email: string
-            //     password: password,
-            //   });
+            const res = await axios.post(`${BACKEND_URL}` + "/register", {
+                email: email,
+                password: password,
+                name: name,
+                surname: surname,
+            });
+            setUser({
+                id: res.data._id,
+                email: email,
+                name: name,
+                surname: surname,
+                role: "user",
+                accessToken: res.data.accessToken,
+                refreshToken: res.data.refreshToken,
+            })
         } catch (err) {
             console.log("error registering", err);
         }
@@ -79,11 +85,19 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const loginUser = async (email: string, password: string) => {
         console.log("Logging User");
         try {
-            //   const res = await axios.post(`${SERVER_URL}` + "/login", {
-            //     username: username,
-            //     password: password,
-            //   });
-            // console.log(data.accessToken);
+            const res = await axios.post(`${BACKEND_URL}` + "/register", {
+                email: email,
+                password: password,
+            });
+            setUser({
+                id: res.data._id,
+                email: email,
+                name: res.data.name,
+                surname: res.data.surname,
+                role: "user",
+                accessToken: res.data.accessToken,
+                refreshToken: res.data.refreshToken,
+            })
         } catch (err) {
             console.log("error loggin in", err);
         }

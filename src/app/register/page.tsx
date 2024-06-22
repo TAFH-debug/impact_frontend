@@ -1,39 +1,44 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/BLC63Cxt9n3
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
+'use client'
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import { useUser } from "@/context/AuthContext"
+import { FormEvent } from "react"
 
 export default function Component() {
+  const { registerUser } = useUser();
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    registerUser(e.currentTarget.email.value, e.currentTarget.usersname.value, e.currentTarget.surname.value, e.currentTarget.password.value)
+  }
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-[#1e293b] to-[#0f172a] dark:from-[#0f172a] dark:to-[#1e293b]">
       <div className="w-full max-w-md p-6 bg-white/10 backdrop-blur-md rounded-lg shadow-lg dark:bg-gray-900/10">
         <h1 className="mb-6 text-2xl font-bold text-center text-white">Register</h1>
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={(e) => { handleSubmit(e) }}>
           <div className="grid grid-cols-2 gap-4">
             <div>
               <Label htmlFor="name" className="text-white">
                 Name
               </Label>
-              <Input
+              <input
                 id="name"
+                name="usersname"
                 type="text"
                 placeholder="Enter your name"
-                className="bg-white/10 backdrop-blur-md text-white placeholder:text-white/50"
+                className="block w-full rounded-lg border-[1px] border-[#3f4046] bg-[#2c2d31] px-4 py-3 text-white focus:border-[#5865f2] focus:ring-[#5865f2]"
               />
             </div>
             <div>
               <Label htmlFor="surname" className="text-white">
                 Surname
               </Label>
-              <Input
+              <input
                 id="surname"
+                name="surname"
                 type="text"
                 placeholder="Enter your surname"
-                className="bg-white/10 backdrop-blur-md text-white placeholder:text-white/50"
+                className="block w-full rounded-lg border-[1px] border-[#3f4046] bg-[#2c2d31] px-4 py-3 text-white focus:border-[#5865f2] focus:ring-[#5865f2]"
               />
             </div>
           </div>
@@ -41,22 +46,24 @@ export default function Component() {
             <Label htmlFor="email" className="text-white">
               Email
             </Label>
-            <Input
-              id="email"
+            <input
               type="email"
+              id="email"
+              className="block w-full rounded-lg border-[1px] border-[#3f4046] bg-[#2c2d31] px-4 py-3 text-white focus:border-[#5865f2] focus:ring-[#5865f2]"
               placeholder="Enter your email"
-              className="bg-white/10 backdrop-blur-md text-white placeholder:text-white/50"
+              required
             />
           </div>
           <div>
             <Label htmlFor="password" className="text-white">
               Password
             </Label>
-            <Input
+            <input
               id="password"
+              name="password"
               type="password"
               placeholder="Enter your password"
-              className="bg-white/10 backdrop-blur-md text-white placeholder:text-white/50"
+              className="block w-full rounded-lg border-[1px] border-[#3f4046] bg-[#2c2d31] px-4 py-3 text-white focus:border-[#5865f2] focus:ring-[#5865f2]"
             />
           </div>
           <Button className="w-full bg-[#4f46e5] hover:bg-[#4338ca] text-white">Register</Button>
