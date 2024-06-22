@@ -12,7 +12,6 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import axiosInstance from "@/axiosInstance";
 
-const BACKEND_URL = "http://157.230.239.9:3000"
 
 const initialUser = {
     id: "",
@@ -65,14 +64,14 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     ) => {
         console.log("Registering User");
         try {
-            const res = await axiosInstance.post(`${BACKEND_URL}` + "/register", {
+            const res = await axiosInstance.post("/register", {
                 email: email,
                 password: password,
                 name: name,
                 surname: surname,
             });
             setUser({
-                id: res.data._id,
+                id: res.data.user._id,
                 email: email,
                 name: name,
                 surname: surname,
@@ -80,6 +79,8 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
                 accessToken: res.data.accessToken,
                 refreshToken: res.data.refreshToken,
             })
+            window.localStorage.setItem("token", res.data.accessToken);
+            window.localStorage.setItem("impact-userId", res.data.user._id);
             router.push("/")
             // console.log(res);
         } catch (err) {
@@ -90,7 +91,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const loginUser = async (email: string, password: string) => {
         console.log("Logging User");
         try {
-            const res = await axiosInstance.post(`${BACKEND_URL}` + "/login", {
+            const res = await axiosInstance.post("/login", {
                 email: email,
                 password: password,
             });
@@ -103,6 +104,8 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
                 accessToken: res.data.accessToken,
                 refreshToken: res.data.refreshToken,
             })
+            window.localStorage.setItem("token", res.data.accessToken);
+            window.localStorage.setItem("impact-userId", res.data.user._id);
             router.push("/profile")
         } catch (err) {
             console.log("error loggin in", err);

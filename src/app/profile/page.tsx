@@ -1,152 +1,92 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/gn81IHapDJy
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
+'use client';
+
+
 import { Card, CardHeader, CardContent, CardFooter, CardTitle } from "@/components/ui/card"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { JSX, SVGProps } from "react"
-
+import { useUser } from '../../context/AuthContext'
 export default function Component() {
+const { user } = useUser();
   return (
+
     <div className="container mx-auto py-12 px-4 md:px-6 lg:px-8">
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         <div className="col-span-1 md:col-span-2 lg:col-span-1">
-          <Card className="bg-black text-white">
+          <Card className="bg-white text-white">
             <CardHeader>
               <div className="flex items-center gap-4">
-                <Avatar className="h-16 w-16">
+                <Avatar className="h-16 w-16 border-[1px] border-gray-300">
                   <AvatarImage src="/placeholder-user.jpg" />
                   <AvatarFallback>JP</AvatarFallback>
                 </Avatar>
                 <div className="grid gap-1">
-                  <div className="text-xl font-bold">Jared Palmer</div>
-                  <div className="text-sm text-white/80">jared@example.com</div>
+                  <div className="text-xl font-bold text-black">{user.name} {user.surname}</div>
+                  <div className="text-sm text-black">{user.email}</div>
                 </div>
               </div>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid gap-2">
-                <Label htmlFor="name" className="text-white/80">
+                <Label htmlFor="name" className="text-black">
                   Name
                 </Label>
-                <Input id="name" defaultValue="Jared" className="bg-black text-white" />
+                <Input id="name" defaultValue={user.name} className="bg-gray-100 text-black" />
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="surname" className="text-white/80">
+                <Label htmlFor="surname" className="text-black">
                   Surname
                 </Label>
-                <Input id="surname" defaultValue="Palmer" className="bg-black text-white" />
+                <Input id="surname" defaultValue={user.surname} className="bg-gray-100 text-black" />
               </div>
+
               <div className="grid gap-2">
-                <Label htmlFor="email" className="text-white/80">
-                  Email
+                <Label htmlFor="surname" className="text-black">
+                  Calendly Link
                 </Label>
-                <Input id="email" type="email" defaultValue="jared@example.com" className="bg-black text-white" />
+                <Input id="calendly" defaultValue={user.calendly_link} className="bg-gray-100 text-black" />
               </div>
+            
               <div className="grid gap-2">
                 <Label htmlFor="photo" className="text-white/80">
                   Photo
                 </Label>
                 <div className="flex items-center gap-4">
-                  <Avatar className="h-16 w-16">
+                  <Avatar className="h-16 w-16 border-[1px] border-gray-300">
                     <AvatarImage src="/placeholder-user.jpg" />
                     <AvatarFallback>JP</AvatarFallback>
                   </Avatar>
-                  <Button variant="outline" className="bg-black text-white hover:bg-white/20">
+                  <Button variant="outline" className="bg-gray-100 text-black hover:bg-gray-300 ">
                     Change Photo
                   </Button>
                 </div>
               </div>
             </CardContent>
             <CardFooter>
-              <Button className="bg-white text-black hover:bg-white/90">Save Changes</Button>
+              <Button className="bg-rose-500 text-white hover:bg-red-300 hover:text-white">Save Changes</Button>
             </CardFooter>
           </Card>
         </div>
-        <div className="col-span-1 md:col-span-2 lg:col-span-2">
-          <Card className="bg-black text-white">
+        <div className="col-span-1 md:col-span-2 lg:col-span-2 ">
+          <Card className="bg-white text-black">
             <CardHeader>
-              <CardTitle className="text-white/80">Enrolled Courses</CardTitle>
+              <CardTitle className="text-black">Enrolled Courses</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                <Card className="bg-black text-white">
-                  <CardHeader>
-                    <img
-                      src="/placeholder.svg"
-                      alt="Course Image"
-                      width={300}
-                      height={200}
-                      className="rounded-t-lg object-cover"
-                    />
-                  </CardHeader>
-                  <CardContent className="space-y-2">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 ">
+                <Card className="bg-white text-black">
+                  <CardContent className="space-y-2 mt-5">
                     <div className="text-lg font-bold">Introduction to React</div>
-                    <div className="text-sm text-white/80">
+                    <div className="text-sm text-gray-500">
                       Learn the fundamentals of React.js and build your first web application.
                     </div>
-                    <div className="flex items-center gap-2">
-                      <CalendarDaysIcon className="h-4 w-4 text-white/80" />
-                      <div className="text-sm text-white/80">Started on June 1, 2023</div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <ClockIcon className="h-4 w-4 text-white/80" />
-                      <div className="text-sm text-white/80">12 hours</div>
-                    </div>
+                    
                   </CardContent>
                 </Card>
-                <Card className="bg-black text-white">
-                  <CardHeader>
-                    <img
-                      src="/placeholder.svg"
-                      alt="Course Image"
-                      width={300}
-                      height={200}
-                      className="rounded-t-lg object-cover"
-                    />
-                  </CardHeader>
-                  <CardContent className="space-y-2">
-                    <div className="text-lg font-bold">Advanced JavaScript</div>
-                    <div className="text-sm text-white/80">
-                      Dive deep into the advanced features and concepts of JavaScript.
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CalendarDaysIcon className="h-4 w-4 text-white/80" />
-                      <div className="text-sm text-white/80">Started on April 15, 2023</div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <ClockIcon className="h-4 w-4 text-white/80" />
-                      <div className="text-sm text-white/80">18 hours</div>
-                    </div>
-                  </CardContent>
-                </Card>
-                <Card className="bg-black text-white">
-                  <CardHeader>
-                    <img
-                      src="/placeholder.svg"
-                      alt="Course Image"
-                      width={300}
-                      height={200}
-                      className="rounded-t-lg object-cover"
-                    />
-                  </CardHeader>
-                  <CardContent className="space-y-2">
-                    <div className="text-lg font-bold">Mastering CSS</div>
-                    <div className="text-sm text-white/80">Become a CSS expert and create stunning web designs.</div>
-                    <div className="flex items-center gap-2">
-                      <CalendarDaysIcon className="h-4 w-4 text-white/80" />
-                      <div className="text-sm text-white/80">Started on September 1, 2022</div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <ClockIcon className="h-4 w-4 text-white/80" />
-                      <div className="text-sm text-white/80">24 hours</div>
-                    </div>
-                  </CardContent>
-                </Card>
+               
+
               </div>
             </CardContent>
           </Card>

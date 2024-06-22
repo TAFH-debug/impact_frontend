@@ -28,14 +28,14 @@ export default function Component() {
                 </div>
                 <div className="flex flex-col gap-3 min-[400px]:flex-row">
                   <Link
-                    href="#"
+                    href="/courses"
                     className="inline-flex h-10 items-center justify-center rounded-md bg-rose-500 px-8 text-sm font-medium text-white shadow transition-colors hover:bg-red-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
                     prefetch={false}
                   >
                     Browse Courses
                   </Link>
                   <Link
-                    href="#"
+                    href="/mentors"
                     className="inline-flex h-10 items-center justify-center rounded-md bg-rose-500 px-8 text-sm font-medium text-white shadow transition-colors hover:bg-red-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
                     prefetch={false}
                   >
@@ -118,7 +118,7 @@ export default function Component() {
             </div>
             <div className="flex flex-col gap-2 min-[400px]:flex-row justify-center">
               <Link
-                href="#"
+                href="/mentors"
                 className="inline-flex h-10 items-center justify-center rounded-md bg-rose-500 px-8 text-sm font-medium text-white shadow transition-colors hover:bg-red-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
                 prefetch={false}
               >
@@ -142,7 +142,7 @@ export default function Component() {
                   personalized study plans, our AI-powered tools will ensure you reach your educational goals.
                 </p>
                 <Link
-                  href="#"
+                  href="/gpt"
                   className="inline-flex h-9 items-center justify-center rounded-md bg-secondary px-4 py-2 text-sm font-medium text-secondary-foreground shadow transition-colors hover:bg-secondary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
                   prefetch={false}
                 >
@@ -150,13 +150,13 @@ export default function Component() {
                 </Link>
               </div>
               <div className="flex flex-col items-start space-y-4">
-              <img
-                src="https://files.oaiusercontent.com/file-XNN7zMbfuRps9V4dLng3RfLp?se=2024-06-22T13%3A36%3A26Z&sp=r&sv=2023-11-03&sr=b&rscc=max-age%3D31536000%2C%20immutable&rscd=attachment%3B%20filename%3Dd1b18fe7-e27c-4f64-98d6-6bdb44fbb623.webp&sig=OCK6igdSQ7DpiQ1JxeY2RUgScdlu6Sdo0X/zy%2BDcUW8%3D"
-                width="550"
-                height="400"
-                alt="AI Assistant"
-                className="mx-auto aspect-video overflow-hidden rounded-xl object-center sm:w-full lg:order-last"
-              />
+                <img
+                  src="https://files.oaiusercontent.com/file-XNN7zMbfuRps9V4dLng3RfLp?se=2024-06-22T13%3A36%3A26Z&sp=r&sv=2023-11-03&sr=b&rscc=max-age%3D31536000%2C%20immutable&rscd=attachment%3B%20filename%3Dd1b18fe7-e27c-4f64-98d6-6bdb44fbb623.webp&sig=OCK6igdSQ7DpiQ1JxeY2RUgScdlu6Sdo0X/zy%2BDcUW8%3D"
+                  width="550"
+                  height="400"
+                  alt="AI Assistant"
+                  className="mx-auto aspect-video overflow-hidden rounded-xl object-center sm:w-full lg:order-last"
+                />
               </div>
 
             </div>
