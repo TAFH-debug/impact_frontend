@@ -13,7 +13,7 @@ export default function Component() {
   return (
     <div className="flex flex-col min-h-[100dvh]">
       <main className="flex-1">
-        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-primary text-primary-foreground">
+        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-black text-primary-foreground">
           <div className="container px-4 md:px-6">
             <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
               <div className="flex flex-col justify-center space-y-4">
@@ -21,7 +21,7 @@ export default function Component() {
                   <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
                     Unlock Your Potential with Impact Admission
                   </h1>
-                  <p className="max-w-[600px] text-secondary-foreground md:text-xl">
+                  <p className="max-w-[600px] text-primary-foreground md:text-xl">
                     Explore our comprehensive educational platform and let our AI-powered tools and expert mentors guide
                     you to success.
                   </p>
@@ -119,7 +119,7 @@ export default function Component() {
             <div className="flex flex-col gap-2 min-[400px]:flex-row justify-center">
               <Link
                 href="#"
-                className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+                className="inline-flex h-10 items-center justify-center rounded-md bg-black px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-black/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
                 prefetch={false}
               >
                 Meet Our Mentors
@@ -127,7 +127,7 @@ export default function Component() {
             </div>
           </div>
         </section>
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-primary text-primary-foreground">
+        <section className="w-full py-12 md:py-24 lg:py-32 bg-black text-primary-foreground">
           <div className="container px-4 md:px-6">
             <div className="grid gap-10 sm:px-10 md:gap-16 md:grid-cols-2">
               <div className="space-y-4">
@@ -137,7 +137,7 @@ export default function Component() {
                 <h2 className="lg:leading-tighter text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl xl:text-[3.4rem] 2xl:text-[3.75rem]">
                   Your Personal AI Assistant
                 </h2>
-                <p className="mx-auto max-w-[700px] text-secondary-foreground md:text-xl/relaxed">
+                <p className="mx-auto max-w-[700px] text-primary-foreground md:text-xl/relaxed">
                   Our AI assistant is here to help you every step of the way. From course recommendations to
                   personalized study plans, our AI-powered tools will ensure you reach your educational goals.
                 </p>

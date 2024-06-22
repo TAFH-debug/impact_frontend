@@ -7,23 +7,23 @@ type Props = {}
 
 const Header = (props: Props) => {
     return (
-        <header className="px-4 lg:px-6 h-14 flex items-center bg-primary text-primary-foreground">
-            <Link href="#" className="flex items-center justify-center" prefetch={false}>
+        <header className="bg-black text-primary-foreground py-4 px-6 flex items-center justify-between">
+            <Link href="#" className="flex items-center gap-2" prefetch={false}>
                 <BookOpenIcon className="h-6 w-6" />
-                <span className="sr-only">Impact Admission</span>
+                <span className="text-xl font-bold">Impact Admission</span>
             </Link>
-            <nav className="ml-auto flex gap-4 sm:gap-6 items-center">
-                <Link href="#" className="text-sm font-medium hover:underline underline-offset-4" prefetch={false}>
+            <nav className="flex items-center gap-4">
+                <Link href="#" className="hover:underline" prefetch={false}>
                     Courses
                 </Link>
-                <Link href="#" className="text-sm font-medium hover:underline underline-offset-4" prefetch={false}>
-                    Mentors
+                <Link href="#" className="hover:underline" prefetch={false}>
+                    Mentorship
                 </Link>
-                <Link href="#" className="text-sm font-medium hover:underline underline-offset-4" prefetch={false}>
-                    AI Assistant
+                <Link href="#" className="hover:underline" prefetch={false}>
+                    Community
                 </Link>
-                <Link href="#" className="text-sm font-medium hover:underline underline-offset-4" prefetch={false}>
-                    Contact
+                <Link href="#" className="hover:underline" prefetch={false}>
+                    Resources
                 </Link>
                 <Button variant="secondary">Sign Up</Button>
                 <Button>Log In</Button>
