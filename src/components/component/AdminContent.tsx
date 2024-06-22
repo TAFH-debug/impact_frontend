@@ -2,9 +2,33 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
-import { JSX, SVGProps } from "react"
+import {JSX, SVGProps, useEffect, useState} from "react"
+import axiosInstance from "@/axiosInstance";
 
 export default function MainContent({ openModal }: any) {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    axiosInstance.get("/user/all").then((res) => setUsers(res.data));
+  }, []);
+
+  const addMentor = (id: string) => {
+    axiosInstance.post("/user/role", {
+      id,
+      role: "mentor",
+    }).then(() => axiosInstance.get("/user/all").then((res) => {
+      console.log(res.data);
+      setUsers(res.data)
+    }))
+  }
+
+  const removeMentor = (id: string) => {
+    axiosInstance.post("/user/role", {
+      id,
+      role: "user",
+    }).then(() => axiosInstance.get("/user/all").then((res) => setUsers(res.data)))
+  }
+
   return (
     <div className="flex flex-col h-screen bg-[#1a1a1a] text-white">
       <div className="flex flex-col h-screen bg-[#1a1a1a] text-white">
@@ -36,39 +60,28 @@ export default function MainContent({ openModal }: any) {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                <TableRow>
-                  <TableCell>john@example.com</TableCell>
-                  <TableCell>
-                    <Badge className="bg-[#4caf50] text-white px-2 py-1 rounded-full">Mentor</Badge>
-                  </TableCell>
-                  <TableCell>
-                    <Button className="bg-[#f44336] hover:bg-[#e53935]">
-                      Remove Mentor
-                    </Button>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>jane@example.com</TableCell>
-                  <TableCell>
-                    <Badge className="bg-[#4caf50] text-white px-2 py-1 rounded-full">Mentor</Badge>
-                  </TableCell>
-                  <TableCell>
-                    <Button className="bg-[#f44336] hover:bg-[#e53935]">
-                      Remove Mentor
-                    </Button>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>bob@example.com</TableCell>
-                  <TableCell>
-                    <Badge className="bg-transparent border border-[#4caf50] text-[#4caf50] px-2 py-1 rounded-full">
-                      Not a Mentor
-                    </Badge>
-                  </TableCell>
-                  <TableCell>
-                    <Button className="bg-[#4caf50] hover:bg-[#43a047]">Add Mentor</Button>
-                  </TableCell>
-                </TableRow>
+                {
+                  users.map((user: any, index) =>
+                      <TableRow key={index}>
+                        <TableCell>{user.email}</TableCell>
+                        <TableCell>
+                          {
+                            user.role === "mentor" ? <Badge className="bg-[#4caf50] text-white px-2 py-1 rounded-full">Mentor</Badge> :
+                              <Badge className="bg-transparent border border-[#4caf50] text-[#4caf50] px-2 py-1 rounded-full">
+                                Not a Mentor
+                              </Badge>
+                          }
+                        </TableCell>
+                        <TableCell>
+                          {
+                            user.role === "mentor" ? <Button className="bg-[#f44336] hover:bg-[#e53935]" onClick={() => removeMentor(user._id)}>
+                              Remove Mentor
+                            </Button> : <Button className="bg-[#4caf50] hover:bg-[#43a047]" onClick={() => addMentor(user._id)}>Add Mentor</Button>
+                          }
+                        </TableCell>
+                      </TableRow>
+                  )
+                }
               </TableBody>
             </Table>
           </div>
