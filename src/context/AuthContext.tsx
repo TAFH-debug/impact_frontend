@@ -77,6 +77,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
                 accessToken: res.data.accessToken,
                 refreshToken: res.data.refreshToken,
             })
+            console.log(res);
         } catch (err) {
             console.log("error registering", err);
         }
@@ -85,7 +86,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const loginUser = async (email: string, password: string) => {
         console.log("Logging User");
         try {
-            const res = await axios.post(`${BACKEND_URL}` + "/register", {
+            const res = await axios.post(`${BACKEND_URL}` + "/login", {
                 email: email,
                 password: password,
             });
@@ -98,6 +99,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
                 accessToken: res.data.accessToken,
                 refreshToken: res.data.refreshToken,
             })
+            console.log(res);
         } catch (err) {
             console.log("error loggin in", err);
         }

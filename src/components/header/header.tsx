@@ -8,7 +8,7 @@ type Props = {}
 const Header = (props: Props) => {
     return (
         <header className="bg-white text-black py-4 px-6 flex items-center justify-between">
-            <Link href="#" className="flex items-center gap-2" prefetch={false}>
+            <Link href="/" className="flex items-center gap-2" prefetch={false}>
                 <BookOpenIcon className="h-6 w-6" />
                 <span className="text-xl font-bold">Impact Admission</span>
             </Link>
@@ -16,14 +16,14 @@ const Header = (props: Props) => {
                 <Link href="#" className="hover:underline" prefetch={false}>
                     Courses
                 </Link>
-                <Link href="#" className="hover:underline" prefetch={false}>
+                <Link href="/mentors" className="hover:underline" prefetch={false}>
                     Book a Mentor
                 </Link>
-                <Link href="#" className="hover:underline" prefetch={false}>
+                <Link href="/gpt" className="hover:underline" prefetch={false}>
                     AI Consultant
                 </Link>
-                <Button variant="secondary">Sign Up</Button>
-                <Button variant="default">Log In</Button>
+                <Link href="/register"><Button variant="secondary">Sign Up</Button></Link>
+                <Link href="/login"><Button variant="default">Log In</Button></Link>
             </nav>
         </header>
     )
