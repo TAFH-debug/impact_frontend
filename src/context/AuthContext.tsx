@@ -79,6 +79,8 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
                 accessToken: res.data.accessToken,
                 refreshToken: res.data.refreshToken,
             })
+            window.localStorage.setItem("token", res.data.accessToken);
+            window.localStorage.setITem("impact-userId", res.data._id);
             router.push("/")
             // console.log(res);
         } catch (err) {
@@ -102,6 +104,8 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
                 accessToken: res.data.accessToken,
                 refreshToken: res.data.refreshToken,
             })
+            window.localStorage.setItem("token", res.data.accessToken);
+            window.localStorage.setITem("impact-userId", res.data._id);
             router.push("/profile")
         } catch (err) {
             console.log("error loggin in", err);
