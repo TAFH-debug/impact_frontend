@@ -22,8 +22,7 @@ export default function RootLayout({
       const getData = async () => {
         console.log("getting user");
         const res = await axiosInstance.get(`/user/${userId}`);
-        console.log(res);
-        return
+        console.log("res.data");
       }
       getData();
     }
