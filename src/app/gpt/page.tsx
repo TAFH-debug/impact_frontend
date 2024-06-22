@@ -36,7 +36,7 @@ export default function Component() {
                   <AvatarFallback>JD</AvatarFallback>
                 </Avatar>
                 <div className="border-[1px] px-4 py-3 rounded-lg max-w-[70%] relative">
-                  <p>Hey there! How's it going?</p>
+                  <p>{message.content}</p>
                 </div>
               </div>
             )
@@ -44,7 +44,7 @@ export default function Component() {
             return (
               <div key={index} className="flex items-start gap-4 justify-end">
                 <div className="border-[1px] px-4 py-3 rounded-lg max-w-[70%] relative">
-                  <p>Doing great, thanks for asking!</p>
+                  <p>{message.content}</p>
                 </div>
                 <Avatar className="w-10 h-10 bg-[#3b3b3b] border-[#4b4b4b]">
                   <AvatarImage src="/placeholder-user.jpg" />
