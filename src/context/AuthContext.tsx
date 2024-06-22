@@ -33,7 +33,7 @@ export interface User {
     image?: string;
     description?: string;
     accessToken: string;
-    refreshToken: string;
+    refreshToken?: string;
 }
 
 interface UserContextType {
@@ -46,6 +46,7 @@ interface UserContextType {
     ) => Promise<void>;
     loginUser: (email: string, password: string) => Promise<void>;
     LogoutUser: () => void;
+    authenticateUser: (userId: string) => Promise<void>;
 }
 
 export const UserContext = createContext<UserContextType | undefined>(
@@ -112,6 +113,23 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         }
     };
 
+    const authenticateUser = async (userId: string) => {
+        // console.log("getting user");
+        const res = await axiosInstance.get(`/user/${userId}`);
+        // console.log(res.data[0]);
+        const userToken = window.localStorage.getItem("token");
+        if (userToken !== null) {
+            setUser({
+                id: res.data[0]._id,
+                email: res.data[0].email,
+                name: res.data[0].name,
+                surname: res.data[0].surname,
+                role: res.data[0].role,
+                accessToken: userToken,
+            })
+        }
+    }
+
     const LogoutUser = () => {
         setUser(initialUser);
     };
@@ -121,6 +139,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         registerUser,
         loginUser,
         LogoutUser,
+        authenticateUser,
     };
 
     return (
