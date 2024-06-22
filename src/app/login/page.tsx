@@ -22,7 +22,7 @@ export default function Component() {
             <input
               type="email"
               id="email"
-              className="block w-full rounded-lg border-[1px] border-gray-400 px-4 py-3 text-white focus:border-[#5865f2] focus:ring-[#5865f2]"
+              className="block w-full rounded-lg border-[1px] border-gray-400 px-4 py-3 text-black focus:border-[#5865f2] focus:ring-[#5865f2]"
               placeholder="Enter your email"
               required
             />
@@ -34,7 +34,7 @@ export default function Component() {
             <input
               type="password"
               id="password"
-              className="block w-full rounded-lg border-[1px] border-gray-400  px-4 py-3 text-white focus:border-[#5865f2] focus:ring-[#5865f2]"
+              className="block w-full rounded-lg border-[1px] border-gray-400  px-4 py-3 text-black focus:border-[#5865f2] focus:ring-[#5865f2]"
               placeholder="Enter your password"
               required
             />
