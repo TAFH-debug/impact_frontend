@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import React, { SVGProps } from 'react'
-import { Button } from 'react-bootstrap'
+import { Button } from '../ui/button'
 import Image from 'next/image'
 
 type Props = {}
