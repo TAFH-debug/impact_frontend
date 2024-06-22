@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button"
 import { JSX, SVGProps } from "react"
 import { useUser } from '../../context/AuthContext'
 export default function Component() {
-const { user } = useUser();
+  const { user, LogoutUser } = useUser();
   return (
 
     <div className="container mx-auto py-12 px-4 md:px-6 lg:px-8">
@@ -48,7 +48,7 @@ const { user } = useUser();
                 </Label>
                 <Input id="calendly" defaultValue={user.calendly_link} className="bg-gray-100 text-black" />
               </div>
-            
+
               <div className="grid gap-2">
                 <Label htmlFor="photo" className="text-white/80">
                   Photo
@@ -67,6 +67,9 @@ const { user } = useUser();
             <CardFooter>
               <Button className="bg-rose-500 text-white hover:bg-red-300 hover:text-white">Save Changes</Button>
             </CardFooter>
+            <CardFooter>
+              <Button onClick={LogoutUser} className="bg-rose-500 text-white hover:bg-red-300 hover:text-white">Logout</Button>
+            </CardFooter>
           </Card>
         </div>
         <div className="col-span-1 md:col-span-2 lg:col-span-2 ">
@@ -82,10 +85,10 @@ const { user } = useUser();
                     <div className="text-sm text-gray-500">
                       Learn the fundamentals of React.js and build your first web application.
                     </div>
-                    
+
                   </CardContent>
                 </Card>
-               
+
 
               </div>
             </CardContent>

@@ -35,7 +35,7 @@ export default function Component() {
   }, [searchTerm, courses]);
 
   return (
-    <section className="w-full py-12 bg-muted">
+    <section className="w-full py-12">
       <div className="container grid items-center justify-center gap-4 px-4 text-center md:px-6">
         <div className="space-y-3">
           <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">Explore Our Course Catalog</h2>
@@ -53,7 +53,6 @@ export default function Component() {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <Button type="submit">Search</Button>
           </form>
           <Link href="/courses/create" className="!mt-0">
             <Button variant="outline" className="bg-green-500 text-white hover:bg-green-600">
@@ -72,7 +71,6 @@ export default function Component() {
                 <h3 className="text-xl font-bold">{course.name}</h3>
                 <p className="text-sm text-muted-foreground">{course.descr}</p>
                 <div className="flex items-center justify-between mt-4">
-                  <span className="text-lg font-semibold">{course.price}</span>
                   <div className="flex gap-2">
                     <Button size="sm">Enroll</Button>
                     <Button size="sm" variant="outline">Remove</Button>
