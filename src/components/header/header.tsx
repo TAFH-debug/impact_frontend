@@ -15,8 +15,7 @@ const Header = (props: Props) => {
     return (
         <header className="bg-white text-black py-4 px-6 flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2" prefetch={false}>
-                <BookOpenIcon className="h-6 w-6" />
-                <span className="text-xl font-bold">Impact Admission</span>
+                <img src="https://static.tildacdn.pro/tild3835-3562-4436-b934-663163663637/9.svg" alt="" className='w-40'/>
             </Link>
             <nav className="flex items-center gap-4">
                 <Link href="#" className="hover:underline" prefetch={false}>
