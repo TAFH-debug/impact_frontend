@@ -35,18 +35,7 @@ export default function MainContent({ openModal }: any) {
         <header className="bg-[#2b2b2b] py-4 px-6 flex items-center justify-between">
           <h1 className="text-2xl font-bold">User Management</h1>
           <div className="flex items-center gap-2">
-            <Input
-              type="search"
-              placeholder="Search users..."
-              className="bg-[#2b2b2b] border-[#4caf50] focus:border-[#43a047] focus:ring-[#43a047]"
-            />
-            <Button className="bg-[#4caf50] hover:bg-[#43a047]">
-              <SearchIcon className="w-5 h-5" />
-              <span className="sr-only">Search</span>
-            </Button>
-            <Button onClick={openModal} className="bg-[#3182ce] hover:bg-[#2c5282]">
-              Login
-            </Button>
+            
           </div>
         </header>
         <main className="flex-1 overflow-auto p-6">
