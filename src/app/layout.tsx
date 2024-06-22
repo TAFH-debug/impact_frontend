@@ -18,8 +18,14 @@ export default function RootLayout({
   useEffect(() => {
     if (window.localStorage.getItem("impact-userId") !== null) {
       const userId = window.localStorage.getItem("impact-userId");
-      const res = axiosInstance.get(`/user/${userId}`);
-      console.log(res);
+      console.log(userId);
+      const getData = async () => {
+        console.log("getting user");
+        const res = await axiosInstance.get(`/user/${userId}`);
+        console.log(res);
+        return
+      }
+      getData();
     }
   })
   return (
