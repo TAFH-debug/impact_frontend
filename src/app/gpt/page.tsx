@@ -10,7 +10,7 @@ interface Message {
 }
 
 export default function Component() {
-  const [messages, setMessages] = useState<Message[]>([{ content: "Hey! Ask me anything about Impact admission or consultation!", role: "chat" }]);
+  const [messages, setMessages] = useState<Message[]>([{ content: "Hey! Ask me anything about Impact admission or consultation!", role: "assistant" }]);
   const [messageText, setMessageText] = useState("");
 
   const handleSend = async () => {
