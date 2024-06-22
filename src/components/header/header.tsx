@@ -26,7 +26,7 @@ const Header = (props: Props) => {
                     Resources
                 </Link>
                 <Button variant="secondary">Sign Up</Button>
-                <Button>Log In</Button>
+                <Button variant="default">Log In</Button>
             </nav>
         </header>
     )
