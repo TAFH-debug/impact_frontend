@@ -25,8 +25,8 @@ export default function Component() {
   }
 
   return (
-    <div className="flex flex-col h-screen w-full  text-black">
-      <div className="flex-1 overflow-y-auto px-6 py-8 space-y-4">
+    <div className="flex flex-col w-full h-screen text-black">
+      <div className="flex-1 overflow-y-auto px-6 py-8 space-y-4 h-[60%]">
         {messages.map((message, index) => {
           if (message.role === "assistant") {
             return (
@@ -55,17 +55,19 @@ export default function Component() {
           }
         })}
       </div>
-      <div className="bg-gray-200 px-6 py-4 flex items-center gap-4">
+      <footer>
+      <div className=" px-6 py-4 flex items-center gap-4  ">
         <Textarea
           value={messageText}
           onChange={(e) => { setMessageText(e.currentTarget.value) }}
           placeholder="Type your message..."
           className=" border-[#4b4b4b] rounded-lg flex-1 resize-none"
         />
-        <Button variant="ghost" size="icon" className="hover:bg-[#3b3b3b]" onClick={handleSend}>
+        <Button variant="ghost" size="icon" className="hover:bg-gray-100" onClick={handleSend}>
           <SendIcon className="w-5 h-5" />
         </Button>
       </div>
+      </footer>
     </div>
   )
 }
