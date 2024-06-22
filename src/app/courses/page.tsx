@@ -4,44 +4,35 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-const coursesData = [
-  {
-    title: "Introduction to Web Development",
-    description: "Learn the fundamentals of web development.",
-    price: "$49.99",
-    imgSrc: "/placeholder.svg",
-  },
-  {
-    title: "Advanced JavaScript Techniques",
-    description: "Dive deep into JavaScript and master advanced concepts.",
-    price: "$99.99",
-    imgSrc: "/placeholder.svg",
-  },
-  {
-    title: "Mastering React.js",
-    description: "Become a React.js expert and build complex applications.",
-    price: "$129.99",
-    imgSrc: "/placeholder.svg",
-  },
-  {
-    title: "Data Structures and Algorithms",
-    description: "Enhance your problem-solving skills with this comprehensive course.",
-    price: "$79.99",
-    imgSrc: "/placeholder.svg",
-  },
-];
-
 export default function Component() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [filteredCourses, setFilteredCourses] = useState(coursesData);
+  const [courses, setCourses] = useState([]);
+  const [filteredCourses, setFilteredCourses] = useState([]);
+
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const response = await fetch("http://157.230.239.9:3000/courses");
+        const data = await response.json();
+        setCourses(data);
+        setFilteredCourses(data);
+      } catch (error) {
+        console.error("Error fetching courses:", error);
+        setCourses([]);
+        setFilteredCourses([]);
+      }
+    };
+
+    fetchCourses();
+  }, []);
 
   useEffect(() => {
     setFilteredCourses(
-      coursesData.filter((course) =>
-        course.title.toLowerCase().includes(searchTerm.toLowerCase())
+      courses.filter((course) =>
+        course.name.toLowerCase().includes(searchTerm.toLowerCase())
       )
     );
-  }, [searchTerm]);
+  }, [searchTerm, courses]);
 
   return (
     <section className="w-full py-12 bg-muted">
@@ -71,15 +62,15 @@ export default function Component() {
           </Link>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {filteredCourses.map((course, index) => (
-            <div key={index} className="relative overflow-hidden transition-transform duration-300 ease-in-out rounded-lg shadow-lg group hover:shadow-xl hover:-translate-y-2">
-              <Link href="#" className="absolute inset-0 z-10" prefetch={false}>
+          {filteredCourses.length > 1 ? filteredCourses.map((course) => (
+            <div key={course.id} className="relative overflow-hidden transition-transform duration-300 ease-in-out rounded-lg shadow-lg group hover:shadow-xl hover:-translate-y-2">
+              <Link href={`/course/${course.id}`} className="absolute inset-0 z-10" prefetch={false}>
                 <span className="sr-only">View</span>
               </Link>
-              <img src={course.imgSrc} alt={course.title} width={300} height={200} className="object-cover w-full h-48" />
-              <div className="p-4 bg-background">
-                <h3 className="text-xl font-bold">{course.title}</h3>
-                <p className="text-sm text-muted-foreground">{course.description}</p>
+              <img src={course.photo || "/placeholder.svg"} alt={course.name} width={300} height={200} className="object-cover w-full h-48" />
+              <div className="p-4 bg-background h-full">
+                <h3 className="text-xl font-bold">{course.name}</h3>
+                <p className="text-sm text-muted-foreground">{course.descr}</p>
                 <div className="flex items-center justify-between mt-4">
                   <span className="text-lg font-semibold">{course.price}</span>
                   <div className="flex gap-2">
@@ -89,7 +80,7 @@ export default function Component() {
                 </div>
               </div>
             </div>
-          ))}
+          )) : <></>}
         </div>
       </div>
     </section>
