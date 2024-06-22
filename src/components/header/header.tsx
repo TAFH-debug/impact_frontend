@@ -18,7 +18,7 @@ const Header = (props: Props) => {
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP3H0F3rEt_ycWnYwU7TXgGCsHvW6JdNyT5w&s" alt="" className='w-20'/>
             </Link>
             <nav className="flex items-center gap-4">
-                <Link href="#" className="hover:text-rose-500" prefetch={false}>
+                <Link href="/courses" className="hover:text-rose-500" prefetch={false}>
                     Courses
                 </Link>
                 <Link href="/mentors" className="hover:text-rose-500" prefetch={false}>
