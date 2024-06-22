@@ -41,9 +41,14 @@ export default function Component() {
                 </Label>
                 <Input id="surname" defaultValue={user.surname} className="bg-gray-100 text-black" />
               </div>
-
               <div className="grid gap-2">
-                <Label htmlFor="surname" className="text-black">
+                <Label htmlFor="description" className="text-black">
+                  Description
+                </Label>
+                <Input id="description" defaultValue={user.description} className="bg-gray-100 text-black" />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="calendly" className="text-black">
                   Calendly Link
                 </Label>
                 <Input id="calendly" defaultValue={user.calendly_link} className="bg-gray-100 text-black" />

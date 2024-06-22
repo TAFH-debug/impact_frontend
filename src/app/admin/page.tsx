@@ -1,5 +1,5 @@
 "use client"
-import {JSX, SVGProps, useEffect, useState} from "react"
+import { JSX, SVGProps, useEffect, useState } from "react"
 import LoginModal from "@/components/component/LoginModal"
 import MainContent from "@/components/component/AdminContent"
 
@@ -8,9 +8,10 @@ export default function Component() {
 
   useEffect(() => {
     if (window !== undefined) {
-      setIsModalOpen(localStorage.getItem('token') === null);
+      setIsModalOpen(localStorage.getItem('admin_token') === null);
     }
   }, []);
+
   const openModal = () => {
     setIsModalOpen(true);
   };
