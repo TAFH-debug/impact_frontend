@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import React, { SVGProps } from 'react'
+import { Button } from 'react-bootstrap'
 import Image from 'next/image'
 
 type Props = {}
@@ -24,6 +25,8 @@ const Header = (props: Props) => {
                 <Link href="#" className="text-sm font-medium hover:underline underline-offset-4" prefetch={false}>
                     Contact
                 </Link>
+                <Button variant="secondary">Sign Up</Button>
+                <Button>Log In</Button>
             </nav>
         </header>
     )
