@@ -26,7 +26,7 @@ export default function Component() {
                 name="usersname"
                 type="text"
                 placeholder="Enter your name"
-                className="block w-full rounded-lg border-[1px] px-4 py-3 text-white focus:border-[#5865f2] focus:ring-[#5865f2]"
+                className="block w-full rounded-lg border-[1px] px-4 py-3 text-black focus:border-[#5865f2] focus:ring-[#5865f2]"
               />
             </div>
             <div>
@@ -38,7 +38,7 @@ export default function Component() {
                 name="surname"
                 type="text"
                 placeholder="Enter your surname"
-                className="block w-full rounded-lg border-[1px]  px-4 py-3 text-white focus:border-[#5865f2] focus:ring-[#5865f2]"
+                className="block w-full rounded-lg border-[1px]  px-4 py-3 text-black focus:border-[#5865f2] focus:ring-[#5865f2]"
               />
             </div>
           </div>
@@ -49,7 +49,7 @@ export default function Component() {
             <input
               type="email"
               id="email"
-              className="block w-full rounded-lg border-[1px]  px-4 py-3 text-white focus:border-[#5865f2] focus:ring-[#5865f2]"
+              className="block w-full rounded-lg border-[1px]  px-4 py-3 text-black focus:border-[#5865f2] focus:ring-[#5865f2]"
               placeholder="Enter your email"
               required
             />
@@ -63,7 +63,7 @@ export default function Component() {
               name="password"
               type="password"
               placeholder="Enter your password"
-              className="block w-full rounded-lg border-[1px] px-4 py-3 text-white focus:border-[#5865f2] focus:ring-[#5865f2]"
+              className="block w-full rounded-lg border-[1px] px-4 py-3 text-black focus:border-[#5865f2] focus:ring-[#5865f2]"
             />
           </div>
           <Button className="w-full bg-rose-500 hover:bg-rose-600 text-white">Register</Button>
