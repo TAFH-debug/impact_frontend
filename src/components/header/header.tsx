@@ -30,7 +30,7 @@ const Header = (props: Props) => {
                 </Link>
                 {user.id ? (
                     <>
-                        <Link href="#" className="flex items-center gap-2" prefetch={false}>
+                        <Link href="/profile" className="flex items-center gap-2" prefetch={false}>
                             <Avatar className="h-8 w-8">
                                 <AvatarImage src="/placeholder-user.jpg" />
                                 <AvatarFallback>JD</AvatarFallback>
