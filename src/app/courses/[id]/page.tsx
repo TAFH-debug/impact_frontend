@@ -1,12 +1,13 @@
-import { useRouter } from 'next/router';
+"use client"
+import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { JSX, SVGProps } from "react";
 
 export default function CourseDetail() {
-  const router = useRouter();
-  const { id } = router.query;
+  const router = useParams();
+  const { id } = router;
   const [course, setCourse] = useState(null);
 
   useEffect(() => {
@@ -15,7 +16,7 @@ export default function CourseDetail() {
         try {
           const response = await fetch(`http://157.230.239.9:3000/courses/${id}`);
           const data = await response.json();
-          setCourse(data);
+          setCourse(data[0]);
         } catch (error) {
           console.error("Error fetching course:", error);
         }

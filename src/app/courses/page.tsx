@@ -6,16 +6,21 @@ import Link from "next/link";
 
 export default function Component() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [courses, setCourses] = useState<any[]>([]);
-  const [filteredCourses, setFilteredCourses] = useState<any[]>([]);
+  const [courses, setCourses] = useState([]);
+  const [filteredCourses, setFilteredCourses] = useState([]);
+  const [isMentor, setIsMentor] = useState(false);
 
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await fetch("http://157.230.239.9:3000/courses");
-        const data = await response.json();
-        setCourses(data);
-        setFilteredCourses(data);
+        const responseCourses = await fetch("http://157.230.239.9:3000/courses");
+        const userId = localStorage.getItem('impact-userId')
+        const responseUser = await fetch("http://157.230.239.9:3000/user/" + userId)
+        const dataCourses = await responseCourses.json();
+        const dataUser = await responseUser.json();
+        setIsMentor(dataUser[0].role == 'mentor')
+        setCourses(dataCourses);
+        setFilteredCourses(dataCourses);
       } catch (error) {
         console.error("Error fetching courses:", error);
         setCourses([]);
@@ -28,10 +33,11 @@ export default function Component() {
 
   useEffect(() => {
     setFilteredCourses(
-      courses.filter((course) =>
-        course.name.toLowerCase().includes(searchTerm.toLowerCase())
-      )
+      courses.filter((course) => {
+        return course.name.toLowerCase().includes(searchTerm.toLowerCase())
+      })
     );
+    console.log(filteredCourses)
   }, [searchTerm, courses]);
 
   return (
@@ -54,26 +60,29 @@ export default function Component() {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </form>
-          <Link href="/courses/create" className="!mt-0">
-            <Button variant="outline" className="bg-green-500 text-white hover:bg-green-600">
-              Add New Course
-            </Button>
-          </Link>
+          {isMentor && (
+            <Link href="/courses/create" className="!mt-0">
+              <Button variant="outline" className="bg-green-500 text-white hover:bg-green-600">
+                Add New Course
+              </Button>
+            </Link>
+          )}
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {filteredCourses.length > 1 ? filteredCourses.map((course) => (
+          {filteredCourses.length >= 1 ? filteredCourses.map((course) => (
             <div key={course.id} className="relative overflow-hidden transition-transform duration-300 ease-in-out rounded-lg shadow-lg group hover:shadow-xl hover:-translate-y-2">
-              <Link href={`/course/${course.id}`} className="absolute inset-0 z-10" prefetch={false}>
-                <span className="sr-only">View</span>
-              </Link>
               <img src={course.photo || "/placeholder.svg"} alt={course.name} width={300} height={200} className="object-cover w-full h-48" />
               <div className="p-4 bg-background h-full">
                 <h3 className="text-xl font-bold">{course.name}</h3>
                 <p className="text-sm text-muted-foreground">{course.descr}</p>
                 <div className="flex items-center justify-between mt-4">
                   <div className="flex gap-2">
-                    <Button size="sm">Enroll</Button>
-                    <Button size="sm" variant="outline">Remove</Button>
+                    <Link href={`/courses/${course._id}`} prefetch={false}>
+                      <Button size="sm">Enroll</Button>
+                    </Link>
+                    {isMentor && (
+                      <Button size="sm" variant="outline">Remove</Button>
+                    )}
                   </div>
                 </div>
               </div>
