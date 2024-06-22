@@ -1,15 +1,10 @@
 "use client"
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/axfDqEl9Sy2
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
 import { JSX, SVGProps, useState } from "react"
 import LoginModal from "@/components/component/LoginModal"
 import MainContent from "@/components/component/AdminContent"
 
 export default function Component() {
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(localStorage.getItem('token') !== null);
 
   const openModal = () => {
     setIsModalOpen(true);

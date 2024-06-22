@@ -10,6 +10,7 @@ import React, {
 import { useRouter } from "next/navigation";
 
 import axios from "axios";
+import axiosInstance from "@/axiosInstance";
 
 const BACKEND_URL = "http://157.230.239.9:3000"
 
@@ -64,7 +65,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     ) => {
         console.log("Registering User");
         try {
-            const res = await axios.post(`${BACKEND_URL}` + "/register", {
+            const res = await axiosInstance.post(`${BACKEND_URL}` + "/register", {
                 email: email,
                 password: password,
                 name: name,
@@ -89,7 +90,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const loginUser = async (email: string, password: string) => {
         console.log("Logging User");
         try {
-            const res = await axios.post(`${BACKEND_URL}` + "/login", {
+            const res = await axiosInstance.post(`${BACKEND_URL}` + "/login", {
                 email: email,
                 password: password,
             });
@@ -103,7 +104,6 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
                 refreshToken: res.data.refreshToken,
             })
             router.push("/profile")
-            // console.log(res);
         } catch (err) {
             console.log("error loggin in", err);
         }

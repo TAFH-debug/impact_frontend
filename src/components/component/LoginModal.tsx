@@ -1,23 +1,21 @@
 "use client"
 
 import { useState } from "react";
+import axiosInstance from "@/axiosInstance";
 
-export default function LoginModal({ onClose }) {
+export default function LoginModal({ onClose }: any) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     const credentials = btoa(`${username}:${password}`);
-    const response = await fetch('http://157.230.239.9:3000/admin/check', {
-      method: 'GET',
-      headers: {
-        'Authorization': `Basic ${credentials}`
-      }
-    });
-    const json = await response.json()
+    localStorage.setItem('token', credentials);
+    
+    const response = await axiosInstance.get('/admin/check');
+    const json = response.data;
   
-    if (!response.ok) {
+    if (response.status > 299 || response.status < 200) {
       console.error('Error:', json.message);
       return;
     }

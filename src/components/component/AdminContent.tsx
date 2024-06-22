@@ -4,7 +4,7 @@ import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@
 import { Badge } from "@/components/ui/badge"
 import { JSX, SVGProps } from "react"
 
-export default function MainContent({ openModal }) {
+export default function MainContent({ openModal }: any) {
   return (
     <div className="flex flex-col h-screen bg-[#1a1a1a] text-white">
       <div className="flex flex-col h-screen bg-[#1a1a1a] text-white">
