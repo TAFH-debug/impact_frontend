@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { ChangeEvent, FormEvent, JSX, SetStateAction, SVGProps, useRef, useState } from "react"
-import { useUser } from '../../context/AuthContext'
+import { useUser } from '@/context/AuthContext'
 import axiosInstance from "@/axiosInstance";
 
 export default function Component() {
@@ -41,7 +41,7 @@ export default function Component() {
             },
           }
         );
-        imgRef.current = res.data;
+        imgRef.current = res.data.url;
       } catch (err) {
         console.log("error sending image", err);
       }
@@ -53,16 +53,12 @@ export default function Component() {
         surname: surname,
         description: description,
         calendly_link: calendly,
-        image: imgRef,
+        image: imgRef.current,
       });
       setUser(res.data);
     } catch (err) {
       console.log("error updaing user", err);
     }
-    e.currentTarget.usersname.value = "";
-    e.currentTarget.surname.value = "";
-    e.currentTarget.description.value = "";
-    e.currentTarget.calendly.value = "";
     setFile(undefined);
   }
 
@@ -102,7 +98,7 @@ export default function Component() {
                   <Label htmlFor="description" className="text-black">
                     Description
                   </Label>
-                  <Input id="description" placeholder={user.description} className="bg-gray-100 text-black" />
+                  <Input id="description" placeholder={user.descr} className="bg-gray-100 text-black" />
                 </div>
                 <div className="grid gap-2">
                   <Label htmlFor="calendly" className="text-black">

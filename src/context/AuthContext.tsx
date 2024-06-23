@@ -31,7 +31,7 @@ export interface User {
     role: string;
     calendly_link?: string;
     image?: string;
-    description?: string;
+    descr?: string;
     accessToken: string;
     refreshToken?: string;
 }
