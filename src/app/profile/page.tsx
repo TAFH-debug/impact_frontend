@@ -98,7 +98,7 @@ export default function Component() {
                   <Label htmlFor="description" className="text-black">
                     Description
                   </Label>
-                  <Input id="description" placeholder={user.description} className="bg-gray-100 text-black" />
+                  <Input id="description" placeholder={user.descr} className="bg-gray-100 text-black" />
                 </div>
                 <div className="grid gap-2">
                   <Label htmlFor="calendly" className="text-black">
