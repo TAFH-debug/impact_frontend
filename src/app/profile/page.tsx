@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { ChangeEvent, FormEvent, JSX, SetStateAction, SVGProps, useRef, useState } from "react"
-import { useUser } from '../../context/AuthContext'
+import { useUser } from '@/context/AuthContext'
 import axiosInstance from "@/axiosInstance";
 
 export default function Component() {
