@@ -41,7 +41,7 @@ export default function CourseDetail() {
       </header>
       <div className="flex-1 grid grid-cols-[3fr_1fr] gap-6 p-6">
         <div className="bg-muted rounded-lg overflow-hidden">
-          <video className="w-full aspect-video object-cover" controls src={course.video || "/placeholder-video.mp4"} />
+          <iframe className="w-full aspect-video object-cover" src={course.video || "/placeholder-video.mp4"} />
         </div>
         <div className="bg-muted rounded-lg p-6 space-y-6">
           <div>

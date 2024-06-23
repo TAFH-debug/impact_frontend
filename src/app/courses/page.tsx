@@ -71,7 +71,7 @@ export default function Component() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {filteredCourses.length >= 1 ? filteredCourses.map((course) => (
             <div key={course.id} className="relative overflow-hidden transition-transform duration-300 ease-in-out rounded-lg shadow-lg group hover:shadow-xl hover:-translate-y-2">
-              <img src={course.photo || "/placeholder.svg"} alt={course.name} width={300} height={200} className="object-cover w-full h-48" />
+              
               <div className="p-4 bg-background h-full">
                 <h3 className="text-xl font-bold">{course.name}</h3>
                 <p className="text-sm text-muted-foreground">{course.descr}</p>
