@@ -5,8 +5,11 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import Link from "next/link";
+import axiosInstance from "@/axiosInstance";
+import { useRouter } from "next/navigation";
 
 export default function Component() {
+  const router = useRouter();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [video, setVideo] = useState("");
@@ -21,25 +24,8 @@ export default function Component() {
       descr: description,
       video,
     };
-
-    try {
-      const response = await fetch("http://157.230.239.9:3000/courses/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-
-      console.log("Course created successfully");
-
-    } catch (error) {
-      console.error("There was a problem with the fetch operation:", error);
-    }
+    await axiosInstance.post("/courses/create", data);
+    router.back();
   };
 
   return (
@@ -115,7 +101,7 @@ export default function Component() {
   );
 }
 
-function XIcon(props) {
+function XIcon(props:any) {
   return (
     <svg
       {...props}

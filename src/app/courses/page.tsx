@@ -3,41 +3,56 @@ import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import axiosInstance from "@/axiosInstance";
+export interface ICourse {
+  _id: string
+  name: string;
+  photo: string;
+  text: string;
+  video: string;
+  isPrivate: boolean;
+  descr: string;
+  users: string[];
+}
 
 export default function Component() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [courses, setCourses] = useState([]);
-  const [filteredCourses, setFilteredCourses] = useState([]);
+  const [courses, setCourses] = useState<ICourse[]>([]);
+  const [filteredCourses, setFilteredCourses] = useState<ICourse[]>([]);
   const [isMentor, setIsMentor] = useState(false);
 
-  useEffect(() => {
-    const fetchCourses = async () => {
-      try {
-        const responseCourses = await fetch("http://157.230.239.9:3000/courses");
-        const userId = localStorage.getItem('impact-userId')
-        const responseUser = await fetch("http://157.230.239.9:3000/user/" + userId)
-        const dataCourses = await responseCourses.json();
-        const dataUser = await responseUser.json();
-        setIsMentor(dataUser[0].role == 'mentor')
-        setCourses(dataCourses);
-        setFilteredCourses(dataCourses);
-      } catch (error) {
-        console.error("Error fetching courses:", error);
-        setCourses([]);
-        setFilteredCourses([]);
-      }
-    };
+  const fetchCourses = async () => {
+    try {
+      const userId = localStorage.getItem('impact-userId')
+      const responseCourses = await axiosInstance.get("/courses");
+      const responseUser = await axiosInstance.get(`/user/${userId}`);
+      const dataCourses = responseCourses.data;
+      const dataUser = responseUser.data;
+      setIsMentor(dataUser[0].role === 'mentor')
+      setCourses(dataCourses);
+      setFilteredCourses(dataCourses);
+    } catch (error) {
+      console.error("Error fetching courses:", error);
+      setCourses([]);
+      setFilteredCourses([]);
+    }
+  };
 
+  const deleteVideo = async (id: string) => {
+    await axiosInstance.get(`/courses/delete/${id}`);
+    fetchCourses();
+  }
+
+  useEffect(() => {
     fetchCourses();
   }, []);
 
   useEffect(() => {
     setFilteredCourses(
-      courses.filter((course) => {
-        return course.name.toLowerCase().includes(searchTerm.toLowerCase())
-      })
+      courses.filter((course) =>
+        course.name.toLowerCase().includes(searchTerm.toLowerCase())
+      )
     );
-    console.log(filteredCourses)
   }, [searchTerm, courses]);
 
   return (
@@ -70,8 +85,8 @@ export default function Component() {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {filteredCourses.length >= 1 ? filteredCourses.map((course) => (
-            <div key={course.id} className="relative overflow-hidden transition-transform duration-300 ease-in-out rounded-lg shadow-lg group hover:shadow-xl hover:-translate-y-2">
-              
+            <div key={course._id} className="relative overflow-hidden transition-transform duration-300 ease-in-out rounded-lg shadow-lg group hover:shadow-xl hover:-translate-y-2">
+              <img src={course.photo || "/placeholder.svg"} alt={course.name} width={300} height={200} className="object-cover w-full h-48" />
               <div className="p-4 bg-background h-full">
                 <h3 className="text-xl font-bold">{course.name}</h3>
                 <p className="text-sm text-muted-foreground">{course.descr}</p>
@@ -81,7 +96,7 @@ export default function Component() {
                       <Button size="sm">Enroll</Button>
                     </Link>
                     {isMentor && (
-                      <Button size="sm" variant="outline">Remove</Button>
+                      <Button onClick={()=>deleteVideo(course._id)} size="sm" variant="outline">Remove</Button>
                     )}
                   </div>
                 </div>

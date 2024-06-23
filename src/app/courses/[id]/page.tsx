@@ -4,18 +4,20 @@ import { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { JSX, SVGProps } from "react";
+import { ICourse } from '../page';
+import axiosInstance from '@/axiosInstance';
 
 export default function CourseDetail() {
   const router = useParams();
   const { id } = router;
-  const [course, setCourse] = useState(null);
+  const [course, setCourse] = useState<ICourse | null>(null);
 
   useEffect(() => {
     const fetchCourse = async () => {
       if (id) {
         try {
-          const response = await fetch(`http://157.230.239.9:3000/courses/${id}`);
-          const data = await response.json();
+          const response = await axiosInstance.get(`/courses/${id}`);
+          const data = response.data;
           setCourse(data[0]);
         } catch (error) {
           console.error("Error fetching course:", error);
@@ -41,7 +43,14 @@ export default function CourseDetail() {
       </header>
       <div className="flex-1 grid grid-cols-[3fr_1fr] gap-6 p-6">
         <div className="bg-muted rounded-lg overflow-hidden">
-          <iframe className="w-full aspect-video object-cover" src={course.video || "/placeholder-video.mp4"} />
+          <iframe
+            className="w-full aspect-video object-cover"
+            src={course.video}
+            frameBorder="0"
+            title="Product Overview Video"
+            aria-hidden="true"
+          />
+
         </div>
         <div className="bg-muted rounded-lg p-6 space-y-6">
           <div>
