@@ -7,10 +7,11 @@ import React, {
     useEffect,
     useRef,
 } from "react";
+import { useRouter } from "next/navigation";
 
 import axios from "axios";
+import axiosInstance from "@/axiosInstance";
 
-const BACKEND_URL = "http://157.230.239.9:3000"
 
 const initialUser = {
     id: "",
@@ -30,13 +31,14 @@ export interface User {
     role: string;
     calendly_link?: string;
     image?: string;
-    description?: string;
+    descr?: string;
     accessToken: string;
-    refreshToken: string;
+    refreshToken?: string;
 }
 
 interface UserContextType {
     user: User;
+    setUser: React.Dispatch<React.SetStateAction<User>>;
     registerUser: (
         email: string,
         name: string,
@@ -45,6 +47,7 @@ interface UserContextType {
     ) => Promise<void>;
     loginUser: (email: string, password: string) => Promise<void>;
     LogoutUser: () => void;
+    authenticateUser: (userId: string) => Promise<void>;
 }
 
 export const UserContext = createContext<UserContextType | undefined>(
@@ -52,6 +55,7 @@ export const UserContext = createContext<UserContextType | undefined>(
 );
 
 const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+    const router = useRouter();
     const [user, setUser] = useState<User>(initialUser);
 
     const registerUser = async (
@@ -62,14 +66,14 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     ) => {
         console.log("Registering User");
         try {
-            const res = await axios.post(`${BACKEND_URL}` + "/register", {
+            const res = await axiosInstance.post("/register", {
                 email: email,
                 password: password,
                 name: name,
                 surname: surname,
             });
             setUser({
-                id: res.data._id,
+                id: res.data.user._id,
                 email: email,
                 name: name,
                 surname: surname,
@@ -77,7 +81,10 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
                 accessToken: res.data.accessToken,
                 refreshToken: res.data.refreshToken,
             })
-            console.log(res);
+            window.localStorage.setItem("token", res.data.accessToken);
+            window.localStorage.setItem("impact-userId", res.data.user._id);
+            router.push("/")
+            // console.log(res);
         } catch (err) {
             console.log("error registering", err);
         }
@@ -86,34 +93,57 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const loginUser = async (email: string, password: string) => {
         console.log("Logging User");
         try {
-            const res = await axios.post(`${BACKEND_URL}` + "/login", {
+            const res = await axiosInstance.post("/login", {
                 email: email,
                 password: password,
             });
             setUser({
-                id: res.data._id,
+                id: res.data.user._id,
                 email: email,
-                name: res.data.name,
-                surname: res.data.surname,
+                name: res.data.user.name,
+                surname: res.data.user.surname,
                 role: "user",
                 accessToken: res.data.accessToken,
                 refreshToken: res.data.refreshToken,
             })
-            console.log(res);
+            window.localStorage.setItem("token", res.data.accessToken);
+            window.localStorage.setItem("impact-userId", res.data.user._id);
+            router.push("/profile")
         } catch (err) {
             console.log("error loggin in", err);
         }
     };
 
+    const authenticateUser = async (userId: string) => {
+        const res = await axiosInstance.get(`/user/${userId}`);
+        console.log(res.data[0]);
+        const userToken = window.localStorage.getItem("token");
+        if (userToken !== null) {
+            setUser({
+                id: res.data[0]._id,
+                email: res.data[0].email,
+                name: res.data[0].name,
+                surname: res.data[0].surname,
+                role: res.data[0].role,
+                accessToken: userToken,
+            })
+        }
+    }
+
     const LogoutUser = () => {
+        window.localStorage.removeItem("token");
+        window.localStorage.removeItem("impact-userId");
         setUser(initialUser);
+        router.push("/");
     };
 
     const valueToShare = {
         user,
+        setUser,
         registerUser,
         loginUser,
         LogoutUser,
+        authenticateUser,
     };
 
     return (

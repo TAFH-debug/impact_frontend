@@ -18,6 +18,11 @@ const config = {
       },
     },
     extend: {
+      backgroundImage: {
+        'mentor-back': "url(https://optim.tildacdn.pro/tild3037-3433-4666-b963-383636373532/-/cover/594x898/center/center/-/format/webp/Screen_Shot_2021-12-.png)",
+        'footer-texture': "url('/img/footer-texture.png')",
+      },
+      
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
