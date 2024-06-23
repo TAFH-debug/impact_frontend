@@ -55,7 +55,7 @@ export default function Component() {
         calendly_link: calendly,
         image: imgRef.current,
       });
-      setUser(res.data);
+      setUser(res.data.url);
     } catch (err) {
       console.log("error updaing user", err);
     }
