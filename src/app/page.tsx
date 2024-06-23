@@ -44,7 +44,7 @@ export default function Component() {
                 </div>
               </div>
               <img
-                src="https://files.oaiusercontent.com/file-t8YqBbGUfIi0mpG5apfOtKxg?se=2024-06-22T13%3A37%3A43Z&sp=r&sv=2023-11-03&sr=b&rscc=max-age%3D31536000%2C%20immutable&rscd=attachment%3B%20filename%3Ddb6d2f3d-53be-4c6c-8c04-977af06c8f34.webp&sig=8UhxW2WXg9%2B/CR%2BtCX/XfTqLCENtnDw58lK42/gRe2g%3D"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbm9cdTgP8-_J6hsL5nxPFuKDnjvLyAOKrmQ&s"
                 width="550"
                 height="550"
                 alt="Hero"
@@ -151,7 +151,7 @@ export default function Component() {
               </div>
               <div className="flex flex-col items-start space-y-4">
                 <img
-                  src="https://files.oaiusercontent.com/file-XNN7zMbfuRps9V4dLng3RfLp?se=2024-06-22T13%3A36%3A26Z&sp=r&sv=2023-11-03&sr=b&rscc=max-age%3D31536000%2C%20immutable&rscd=attachment%3B%20filename%3Dd1b18fe7-e27c-4f64-98d6-6bdb44fbb623.webp&sig=OCK6igdSQ7DpiQ1JxeY2RUgScdlu6Sdo0X/zy%2BDcUW8%3D"
+                  src="https://i0.wp.com/nimbleapproach.com/wp-content/uploads/2023/01/illustration_of_AI_teaching_2.png?resize=473%2C473&ssl=1"
                   width="550"
                   height="400"
                   alt="AI Assistant"
