@@ -30,7 +30,7 @@ export default function Component() {
             <div className="p-2">
               <h3 className="text-2xl font-bold mb-3 text-center text-white">{user.name} {user.surname}</h3>
               <p className="text-base text-white mb-6 text-center">
-                {user.description}
+                {user.descr}
               </p>
               <div className="flex justify-center">
                 {user.calendly_link ? (
