@@ -3,7 +3,7 @@ import axiosInstance from "@/axiosInstance";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
+import { BACKEND_URL } from "@/axiosInstance";
 export default function Component() {
   const [users, setUsers] = useState<any[]>([]);
 
@@ -23,7 +23,7 @@ export default function Component() {
           <div key={user.id} className="bg-bg-gray-300 rounded-lg shadow-lg overflow-hidden">
             <div className="flex items-center justify-center py-8 bg-gray-100">
               <Avatar className="w-24 h-24 border-2 border-gray-200">
-                <AvatarImage src={user.image || "/placeholder-user.jpg"} />
+                <AvatarImage src={user.image !== undefined ? (BACKEND_URL + "/files/" + user.image) : "/placeholder-user.jpg"} />
                 <AvatarFallback>{user.name ? user.name[0] : ''}{user.surname ? user.surname[0] : ''}</AvatarFallback>
               </Avatar>
             </div>
