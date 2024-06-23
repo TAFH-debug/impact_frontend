@@ -38,6 +38,7 @@ export interface User {
 
 interface UserContextType {
     user: User;
+    setUser: React.Dispatch<React.SetStateAction<User>>;
     registerUser: (
         email: string,
         name: string,
@@ -139,6 +140,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
     const valueToShare = {
         user,
+        setUser,
         registerUser,
         loginUser,
         LogoutUser,

@@ -6,10 +6,66 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { JSX, SVGProps } from "react"
+import { ChangeEvent, FormEvent, JSX, SetStateAction, SVGProps, useRef, useState } from "react"
 import { useUser } from '../../context/AuthContext'
+import axiosInstance from "@/axiosInstance";
+
 export default function Component() {
-  const { user, LogoutUser } = useUser();
+  const { user, setUser, LogoutUser } = useUser();
+  const [file, setFile] = useState<Blob | string>();
+
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setFile(e.target.files[0]);
+    }
+  };
+
+
+  const imgRef = useRef(user.image);
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const name = e.currentTarget.usersname.value;
+    const surname = e.currentTarget.surname.value;
+    const description = e.currentTarget.description.value;
+    const calendly = e.currentTarget.calendly.value;
+    if (file !== undefined) {
+      const formData = new FormData();
+      formData.append("file", file);
+      try {
+        const res = await axiosInstance.post("/upload",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        imgRef.current = res.data;
+      } catch (err) {
+        console.log("error sending image", err);
+      }
+    }
+
+    try {
+      const res = await axiosInstance.post("/user/update", {
+        name: name,
+        surname: surname,
+        description: description,
+        calendly_link: calendly,
+        image: imgRef,
+      });
+      setUser(res.data);
+    } catch (err) {
+      console.log("error updaing user", err);
+    }
+    e.currentTarget.usersname.value = "";
+    e.currentTarget.surname.value = "";
+    e.currentTarget.description.value = "";
+    e.currentTarget.calendly.value = "";
+    setFile(undefined);
+  }
+
   return (
 
     <div className="container mx-auto py-12 px-4 md:px-6 lg:px-8">
@@ -31,49 +87,40 @@ export default function Component() {
             <CardContent >
               <form className="space-y-4" onSubmit={(e) => { handleSubmit(e) }}>
                 <div className="grid gap-2">
-                  <Label htmlFor="name" className="text-black">
+                  <Label htmlFor="usersname" className="text-black">
                     Name
                   </Label>
-                  <Input id="name" defaultValue={user.name} className="bg-gray-100 text-black" />
+                  <Input id="usersname" name="usersname" placeholder={user.name} className="bg-gray-100 text-black" />
                 </div>
                 <div className="grid gap-2">
                   <Label htmlFor="surname" className="text-black">
                     Surname
                   </Label>
-                  <Input id="surname" defaultValue={user.surname} className="bg-gray-100 text-black" />
+                  <Input id="surname" name="surname" placeholder={user.surname} className="bg-gray-100 text-black" />
                 </div>
                 <div className="grid gap-2">
                   <Label htmlFor="description" className="text-black">
                     Description
                   </Label>
-                  <Input id="description" defaultValue={user.description} className="bg-gray-100 text-black" />
+                  <Input id="description" placeholder={user.description} className="bg-gray-100 text-black" />
                 </div>
                 <div className="grid gap-2">
                   <Label htmlFor="calendly" className="text-black">
                     Calendly Link
                   </Label>
-                  <Input id="calendly" defaultValue={user.calendly_link} className="bg-gray-100 text-black" />
+                  <Input id="calendly" name="calendly" placeholder={user.calendly_link} className="bg-gray-100 text-black" />
                 </div>
-
                 <div className="grid gap-2">
-                  <Label htmlFor="photo" className="text-white/80">
-                    Photo
+                  <Label htmlFor="photo" className="text-black">
+                    Change photo
                   </Label>
-                  <div className="flex items-center gap-4">
-                    <Avatar className="h-16 w-16 border-[1px] border-gray-300">
-                      <AvatarImage src="/placeholder-user.jpg" />
-                      <AvatarFallback>JP</AvatarFallback>
-                    </Avatar>
-                    <Button variant="outline" className="bg-gray-100 text-black hover:bg-gray-300 ">
-                      Change Photo
-                    </Button>
-                  </div>
+                  <Input id="photo" name="photo" type="file" className="text-black" accept="image/png, image/gif, image/jpeg" onChange={(e) => { handleFileChange(e) }} />
+                </div>
+                <div className="grid gap-2">
+                  <Button type="submit" className="bg-rose-500 text-white hover:bg-red-300 hover:text-white">Save Changes</Button>
                 </div>
               </form>
             </CardContent>
-            <CardFooter>
-              <Button className="bg-rose-500 text-white hover:bg-red-300 hover:text-white">Save Changes</Button>
-            </CardFooter>
             <CardFooter>
               <Button onClick={LogoutUser} className="bg-rose-500 text-white hover:bg-red-300 hover:text-white">Logout</Button>
             </CardFooter>
