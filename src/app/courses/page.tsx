@@ -39,7 +39,7 @@ export default function Component() {
   };
 
   const deleteVideo = async (id: string) => {
-    await axiosInstance.delete(`/courses/delete/${id}`);
+    await axiosInstance.get(`/courses/delete/${id}`);
     fetchCourses();
   }
 
