@@ -51,7 +51,7 @@ export default function Component() {
       const res = await axiosInstance.post("/user/update", {
         name: name,
         surname: surname,
-        description: description,
+        descr: description,
         calendly_link: calendly,
         image: imgRef.current,
       });

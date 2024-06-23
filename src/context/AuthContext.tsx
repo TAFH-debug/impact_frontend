@@ -115,9 +115,8 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     };
 
     const authenticateUser = async (userId: string) => {
-        // console.log("getting user");
         const res = await axiosInstance.get(`/user/${userId}`);
-        // console.log(res.data[0]);
+        console.log(res.data[0]);
         const userToken = window.localStorage.getItem("token");
         if (userToken !== null) {
             setUser({
