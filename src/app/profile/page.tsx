@@ -53,7 +53,7 @@ export default function Component() {
         surname: surname,
         description: description,
         calendly_link: calendly,
-        image: imgRef,
+        image: imgRef.current,
       });
       setUser(res.data);
     } catch (err) {
