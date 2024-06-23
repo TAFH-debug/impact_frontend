@@ -41,7 +41,7 @@ export default function Component() {
             },
           }
         );
-        imgRef.current = res.data;
+        imgRef.current = res.data.url;
       } catch (err) {
         console.log("error sending image", err);
       }
@@ -55,14 +55,10 @@ export default function Component() {
         calendly_link: calendly,
         image: imgRef.current,
       });
-      setUser(res.data.url);
+      setUser(res.data);
     } catch (err) {
       console.log("error updaing user", err);
     }
-    e.currentTarget.usersname.value = "";
-    e.currentTarget.surname.value = "";
-    e.currentTarget.description.value = "";
-    e.currentTarget.calendly.value = "";
     setFile(undefined);
   }
 
