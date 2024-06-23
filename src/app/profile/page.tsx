@@ -8,10 +8,11 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { ChangeEvent, FormEvent, JSX, SetStateAction, SVGProps, useRef, useState } from "react"
 import { useUser } from '@/context/AuthContext'
-import axiosInstance from "@/axiosInstance";
+import axiosInstance, { BACKEND_URL } from "@/axiosInstance";
 
 export default function Component() {
   const { user, setUser, LogoutUser } = useUser();
+  console.log(user);
   const [file, setFile] = useState<Blob | string>();
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -71,8 +72,8 @@ export default function Component() {
             <CardHeader>
               <div className="flex items-center gap-4">
                 <Avatar className="h-16 w-16 border-[1px] border-gray-300">
-                  <AvatarImage src="/placeholder-user.jpg" />
-                  <AvatarFallback>JP</AvatarFallback>
+                  <AvatarImage src={user.image !== undefined ? (BACKEND_URL + "/files/" + user.image) : "/placeholder-user.jpg"} />
+                  <AvatarFallback>{user.name ? user.name[0] : ''}{user.surname ? user.surname[0] : ''}</AvatarFallback>
                 </Avatar>
                 <div className="grid gap-1">
                   <div className="text-xl font-bold text-black">{user.name} {user.surname}</div>

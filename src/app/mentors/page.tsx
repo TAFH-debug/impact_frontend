@@ -20,7 +20,7 @@ export default function Component() {
       <h1 className="text-4xl font-bold mb-12 text-center">Meet Our Experienced Mentors</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
         {users.map((user) => (
-          <div key={user.id} className="bg-bg-gray-300 p-8 pt-2 rounded-lg shadow-lg overflow-hidden bg-mentor-back">
+          <div key={user._id} className="bg-bg-gray-300 p-8 pt-2 rounded-lg shadow-lg overflow-hidden bg-mentor-back">
             <div className="flex items-center justify-center py-4">
               <Avatar className="w-32 h-32 border-2 border-gray-200">
                 <AvatarImage src={user.image !== undefined ? (BACKEND_URL + "/files/" + user.image) : "/placeholder-user.jpg"} />
