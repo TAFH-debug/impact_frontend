@@ -125,7 +125,10 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
                 name: res.data[0].name,
                 surname: res.data[0].surname,
                 role: res.data[0].role,
+                descr: res.data[0].descr || "",
+                calendly_link: res.data[0].calendly_link || "",
                 accessToken: userToken,
+                image: res.data[0].image
             })
         }
     }
